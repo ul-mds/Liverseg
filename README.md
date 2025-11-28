@@ -89,7 +89,7 @@ On each client machine:
 python client.py
 ```
 
-### Perform federated learning simulation
+### Perform federated learning simulation (When each client is stored in the same computer)
 ``` bash
 python main.py
 ```
