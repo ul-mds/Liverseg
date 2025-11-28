@@ -10,7 +10,6 @@ FedSeg uses:
 
 -   **Flower (FLWR)** for federated orchestration\
 -   **PyTorch / PyTorch Lightning** (optional) for training\
--   **UNet / custom segmentation models**\
 -   **Medical imaging datasets** (e.g., LiTS, IRCAD) stored
     locally on each client
 
