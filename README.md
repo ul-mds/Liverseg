@@ -33,7 +33,7 @@ Liverseg uses:
 
 ## 📂 Project Structure
 
-    FedSeg/
+    Liverseg/
     ├── ...
     ├── utils/
     │   ├── metrics.py
@@ -45,7 +45,7 @@ Liverseg uses:
 
 ## 🧠 Model Architecture
 
-FedSeg supports several architectures, including:
+Liverseg supports several architectures, including:
 
 -   **UNet**
 -   **ResUNet**
@@ -67,13 +67,13 @@ Each client stores its own dataset **locally**, including:
 
 ``` bash
 git clone git@github.com:ul-mds/Liverseg.git
-cd Fedseg
+cd Liverseg
 pip install -r requirements.txt
 ```
 
 ------------------------------------------------------------------------
 
-## ▶️ How to Run FedSeg
+## ▶️ How to Run Liverseg
 
 ### Start the Server
 
