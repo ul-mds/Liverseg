@@ -11,7 +11,7 @@ FedSeg uses:
 -   **Flower (FLWR)** for federated orchestration\
 -   **PyTorch / PyTorch Lightning** (optional) for training\
 -   **UNet / custom segmentation models**\
--   **Medical imaging datasets** (e.g., LiTS, custom datasets) stored
+-   **Medical imaging datasets** (e.g., LiTS, IRCAD) stored
     locally on each client
 
 ------------------------------------------------------------------------
@@ -22,33 +22,20 @@ FedSeg uses:
     Each client trains locally on its private dataset; only model
     weights are shared.
 
--   **Secure and Privacy-Preserving**\
-    Client data never leaves the device. Optional DP or secure
-    aggregation can be integrated.
-
 -   **Modular Design**\
     Easy to plug in different segmentation models or datasets.
 
--   **Supports Heterogeneous Clients**\
-    Clients can run on different hardware or OS environments.
 
 -   **Configurable Federated Strategies**\
     FedAvg by default, with optional support for FedProx, FedOpt, or
-    custom weighting.
+    custom weighting [TODO].
 
 ------------------------------------------------------------------------
 
 ## 📂 Project Structure
 
     FedSeg/
-    ├── server/
-    │   ├── server.py
-    │   ├── config.py
-    ├── client/
-    │   ├── client.py
-    │   ├── dataset.py
-    │   ├── train.py
-    │   ├── model.py
+    ├── ...
     ├── utils/
     │   ├── metrics.py
     │   ├── transforms.py
@@ -59,12 +46,11 @@ FedSeg uses:
 
 ## 🧠 Model Architecture
 
-FedSeg supports several architectures including:
+FedSeg supports several architectures, including:
 
--   **UNet (default)**\
--   **Attention UNet**\
--   **UNet++**\
--   Custom segmentation models
+-   **UNet**\
+-   **ResUNet**\
+-   **Sepnet**\
 
 ------------------------------------------------------------------------
 
@@ -72,22 +58,17 @@ FedSeg supports several architectures including:
 
 Each client stores its own dataset **locally**, including:
 
--   CT or MRI liver scans\
+-   CT \
 -   Liver + tumor segmentation masks
 
-Structure:
-
-    /data/
-       images/
-       masks/
 
 ------------------------------------------------------------------------
 
 ## 🖥️ Installation
 
 ``` bash
-git clone https://github.com/<your-username>/FedSeg.git
-cd FedSeg
+git clone git@github.com:ul-mds/Liverseg.git
+cd Fedseg
 pip install -r requirements.txt
 ```
 
@@ -95,49 +76,36 @@ pip install -r requirements.txt
 
 ## ▶️ How to Run FedSeg
 
-### 1️⃣ Start the Server
+### Start the Server
 
 ``` bash
-python server/server.py
+python server.py
 ```
 
-### 2️⃣ Start Each Client
+### Start Each Client
 
 On each client machine:
 
 ``` bash
-python client/client.py
+python client.py
+```
+
+### Perform federated learning simulation
+``` bash
+python main.py
 ```
 
 ------------------------------------------------------------------------
 
 ## 📊 Evaluation
 
-Metrics include Dice, IoU, Precision, Recall, and Volume Similarity.
+Metrics include Dice and IoU.
 
 ------------------------------------------------------------------------
 
 ## ⚙️ Configuration
 
-Modify `config.py` to adjust FL rounds, local epochs, learning rate, and
-batch size.
-
-------------------------------------------------------------------------
-
-## 🔒 Privacy & Security (Optional Enhancements)
-
-Compatible with differential privacy, secure aggregation, and gradient
-clipping.
-
-------------------------------------------------------------------------
-
-## 📝 Roadmap
-
--   Add secure aggregation\
--   Add pretrained weights\
--   Add benchmark evaluation\
--   Docker support\
--   Notebook demos
+...
 
 ------------------------------------------------------------------------
 
