@@ -1,0 +1,317 @@
+[2024-10-10 12:59:26,981][flwr][INFO] - Starting Flower simulation, config: num_rounds=50, no round_timeout
+[2024-10-10 12:59:48,347][flwr][INFO] - Flower VCE: Ray initialized with resources: {'object_store_memory': 200000000000.0, 'memory': 860355419136.0, 'node:172.18.62.5': 1.0, 'node:__internal_head__': 1.0, 'GPU': 3.0, 'accelerator_type:A30': 1.0, 'CPU': 128.0}
+[2024-10-10 12:59:48,347][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-10-10 12:59:48,348][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 1.0}
+[2024-10-10 12:59:48,358][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 3 actors
+[2024-10-10 12:59:48,358][flwr][INFO] - [INIT]
+[2024-10-10 12:59:48,358][flwr][INFO] - Requesting initial parameters from one random client
+[2024-10-10 12:59:51,643][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+AttributeError: module 'model' has no attribute 'KiU_Net'
+
+During handling of the above exception, another exception occurred:
+
+[36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/utils.py", line 650, in _locate
+    obj = import_module(mod)
+  File "/software/all/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 846, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 983, in get_code
+  File "<frozen importlib._bootstrap_external>", line 913, in source_to_code
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/model/KiU_Net.py", line 113
+    	print("input shape 1")
+TabError: inconsistent use of tabs and spaces in indentation
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 134, in _resolve_target
+    target = _locate(target)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/utils.py", line 658, in _locate
+    raise ImportError(
+ImportError: Error loading 'model.KiU_Net.kiunet_org':
+TabError('inconsistent use of tabs and spaces in indentation', ('/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/model/KiU_Net.py', 113, 0, '\tprint("input shape 1")\n'))
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 58, in run
+    out_message = app(message=message, context=context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(str(message.metadata.partition_id))
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 81, in client_fn
+    return LiverClient(trainloader=trainloader[int(cid)], valloader=valloaders[int(cid)], cfg=cfg, device=device).to_client()
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 26, in __init__
+    self.model = instantiate(cfg.model)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 333, in instantiate_node
+    _target_ = _resolve_target(node.get(_Keys.TARGET), full_key)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 139, in _resolve_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error locating target 'model.KiU_Net.kiunet_org', set env var HYDRA_FULL_ERROR=1 to see chained exception.
+full_key: model
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Error locating target 'model.KiU_Net.kiunet_org', set env var HYDRA_FULL_ERROR=1 to see chained exception.
+full_key: model
+
+[2024-10-10 12:59:51,643][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+AttributeError: module 'model' has no attribute 'KiU_Net'
+
+During handling of the above exception, another exception occurred:
+
+[36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/utils.py", line 650, in _locate
+    obj = import_module(mod)
+  File "/software/all/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 846, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 983, in get_code
+  File "<frozen importlib._bootstrap_external>", line 913, in source_to_code
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/model/KiU_Net.py", line 113
+    	print("input shape 1")
+TabError: inconsistent use of tabs and spaces in indentation
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 134, in _resolve_target
+    target = _locate(target)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/utils.py", line 658, in _locate
+    raise ImportError(
+ImportError: Error loading 'model.KiU_Net.kiunet_org':
+TabError('inconsistent use of tabs and spaces in indentation', ('/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/model/KiU_Net.py', 113, 0, '\tprint("input shape 1")\n'))
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 58, in run
+    out_message = app(message=message, context=context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(str(message.metadata.partition_id))
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 81, in client_fn
+    return LiverClient(trainloader=trainloader[int(cid)], valloader=valloaders[int(cid)], cfg=cfg, device=device).to_client()
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 26, in __init__
+    self.model = instantiate(cfg.model)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 333, in instantiate_node
+    _target_ = _resolve_target(node.get(_Keys.TARGET), full_key)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 139, in _resolve_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error locating target 'model.KiU_Net.kiunet_org', set env var HYDRA_FULL_ERROR=1 to see chained exception.
+full_key: model
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Error locating target 'model.KiU_Net.kiunet_org', set env var HYDRA_FULL_ERROR=1 to see chained exception.
+full_key: model
+[2024-10-10 12:59:51,643][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+AttributeError: module 'model' has no attribute 'KiU_Net'
+
+During handling of the above exception, another exception occurred:
+
+[36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/utils.py", line 650, in _locate
+    obj = import_module(mod)
+  File "/software/all/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 846, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 983, in get_code
+  File "<frozen importlib._bootstrap_external>", line 913, in source_to_code
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/model/KiU_Net.py", line 113
+    	print("input shape 1")
+TabError: inconsistent use of tabs and spaces in indentation
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 134, in _resolve_target
+    target = _locate(target)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/utils.py", line 658, in _locate
+    raise ImportError(
+ImportError: Error loading 'model.KiU_Net.kiunet_org':
+TabError('inconsistent use of tabs and spaces in indentation', ('/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/model/KiU_Net.py', 113, 0, '\tprint("input shape 1")\n'))
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 58, in run
+    out_message = app(message=message, context=context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(str(message.metadata.partition_id))
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 81, in client_fn
+    return LiverClient(trainloader=trainloader[int(cid)], valloader=valloaders[int(cid)], cfg=cfg, device=device).to_client()
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 26, in __init__
+    self.model = instantiate(cfg.model)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 333, in instantiate_node
+    _target_ = _resolve_target(node.get(_Keys.TARGET), full_key)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 139, in _resolve_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error locating target 'model.KiU_Net.kiunet_org', set env var HYDRA_FULL_ERROR=1 to see chained exception.
+full_key: model
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Error locating target 'model.KiU_Net.kiunet_org', set env var HYDRA_FULL_ERROR=1 to see chained exception.
+full_key: model
+[2024-10-10 12:59:51,644][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/app.py", line 323, in start_simulation
+    hist = run_fl(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/server/server.py", line 490, in run_fl
+    hist, elapsed_time = server.fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/server/server.py", line 93, in fit
+    self.parameters = self._get_initial_parameters(server_round=0, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/server/server.py", line 282, in _get_initial_parameters
+    get_parameters_res = random_client.get_parameters(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 148, in get_parameters
+    message_out = self._submit_job(message, timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 87, in _submit_job
+    raise ex
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+AttributeError: module 'model' has no attribute 'KiU_Net'
+
+During handling of the above exception, another exception occurred:
+
+[36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/utils.py", line 650, in _locate
+    obj = import_module(mod)
+  File "/software/all/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 846, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 983, in get_code
+  File "<frozen importlib._bootstrap_external>", line 913, in source_to_code
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/model/KiU_Net.py", line 113
+    	print("input shape 1")
+TabError: inconsistent use of tabs and spaces in indentation
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 134, in _resolve_target
+    target = _locate(target)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/utils.py", line 658, in _locate
+    raise ImportError(
+ImportError: Error loading 'model.KiU_Net.kiunet_org':
+TabError('inconsistent use of tabs and spaces in indentation', ('/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/model/KiU_Net.py', 113, 0, '\tprint("input shape 1")\n'))
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 58, in run
+    out_message = app(message=message, context=context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(str(message.metadata.partition_id))
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 81, in client_fn
+    return LiverClient(trainloader=trainloader[int(cid)], valloader=valloaders[int(cid)], cfg=cfg, device=device).to_client()
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 26, in __init__
+    self.model = instantiate(cfg.model)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 333, in instantiate_node
+    _target_ = _resolve_target(node.get(_Keys.TARGET), full_key)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 139, in _resolve_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error locating target 'model.KiU_Net.kiunet_org', set env var HYDRA_FULL_ERROR=1 to see chained exception.
+full_key: model
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=1760619, ip=172.18.62.5, actor_id=d7f93d91c9880ad37485410c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150af8557a90>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Error locating target 'model.KiU_Net.kiunet_org', set env var HYDRA_FULL_ERROR=1 to see chained exception.
+full_key: model
+
+[2024-10-10 12:59:51,644][flwr][ERROR] - Your simulation crashed :(. This could be because of several reasons. The most common are: 
+	 > Sometimes, issues in the simulation code itself can cause crashes. It's always a good idea to double-check your code for any potential bugs or inconsistencies that might be contributing to the problem. For example: 
+		 - You might be using a class attribute in your clients that hasn't been defined.
+		 - There could be an incorrect method call to a 3rd party library (e.g., PyTorch).
+		 - The return types of methods in your clients/strategies might be incorrect.
+	 > Your system couldn't fit a single VirtualClient: try lowering `client_resources`.
+	 > All the actors in your pool crashed. This could be because: 
+		 - You clients hit an out-of-memory (OOM) error and actors couldn't recover from it. Try launching your simulation with more generous `client_resources` setting (i.e. it seems {'num_cpus': 3, 'num_gpus': 1.0} is not enough for your run). Use fewer concurrent actors. 
+		 - You were running a multi-node simulation and all worker nodes disconnected. The head node might still be alive but cannot accommodate any actor with resources: {'num_cpus': 3, 'num_gpus': 1.0}.
+Take a look at the Flower simulation examples for guidance <https://flower.ai/docs/framework/how-to-run-simulations.html>.

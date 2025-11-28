@@ -1,0 +1,501 @@
+[2024-09-02 18:04:51,201][flwr][INFO] - Starting Flower simulation, config: num_rounds=50, no round_timeout
+[2024-09-02 18:04:53,940][flwr][INFO] - Flower VCE: Ray initialized with resources: {'memory': 69267434087.0, 'node:10.50.9.88': 1.0, 'object_store_memory': 33971757465.0, 'GPU': 1.0, 'node:__internal_head__': 1.0, 'accelerator_type:T4': 1.0, 'CPU': 8.0}
+[2024-09-02 18:04:53,941][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-09-02 18:04:53,941][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 1.0}
+[2024-09-02 18:04:53,954][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 1 actors
+[2024-09-02 18:04:53,954][flwr][INFO] - [INIT]
+[2024-09-02 18:04:53,955][flwr][INFO] - Requesting initial parameters from one random client
+[2024-09-02 18:04:57,014][flwr][INFO] - Received initial parameters from one random client
+[2024-09-02 18:04:57,014][flwr][INFO] - Evaluating initial global parameters
+[2024-09-02 18:13:48,755][flwr][INFO] - initial parameters (loss, other metrics): 0.641581930901273, OrderedDict([('ind_iou_0', 0.0001212321791509431), ('ind_dice_liver_0', tensor(0.1403, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0080, dtype=torch.float64)), ('ind_iou_1', 5.43322687509038e-05), ('ind_dice_liver_1', tensor(0.1401, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 6.17333400432046e-05), ('all_dice_liver', tensor(0.1401, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0091, dtype=torch.float64))])
+[2024-09-02 18:13:48,760][flwr][INFO] - 
+[2024-09-02 18:13:48,761][flwr][INFO] - [ROUND 1]
+[2024-09-02 18:13:48,761][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-09-02 18:13:49,017][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/mmaia/fedliver_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 2041, in load_state_dict
+    raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+RuntimeError: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+
+[2024-09-02 18:13:49,017][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/mmaia/fedliver_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 2041, in load_state_dict
+    raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+RuntimeError: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+[2024-09-02 18:13:49,164][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/mmaia/fedliver_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 2041, in load_state_dict
+    raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+RuntimeError: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+
+[2024-09-02 18:13:49,164][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/mmaia/fedliver_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 2041, in load_state_dict
+    raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+RuntimeError: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+[2024-09-02 18:13:49,164][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2024-09-02 18:22:01,920][flwr][INFO] - fit progress: (1, 0.641581930901273, OrderedDict([('ind_iou_0', 0.0001212321791509431), ('ind_dice_liver_0', tensor(0.1403, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0080, dtype=torch.float64)), ('ind_iou_1', 5.43322687509038e-05), ('ind_dice_liver_1', tensor(0.1401, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 6.17333400432046e-05), ('all_dice_liver', tensor(0.1401, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0091, dtype=torch.float64))]), 493.15976276341826)
+[2024-09-02 18:22:01,925][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-09-02 18:22:02,134][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/mmaia/fedliver_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 2041, in load_state_dict
+    raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+RuntimeError: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+
+[2024-09-02 18:22:02,134][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/mmaia/fedliver_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 2041, in load_state_dict
+    raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+RuntimeError: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+[2024-09-02 18:22:02,394][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/mmaia/fedliver_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 2041, in load_state_dict
+    raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+RuntimeError: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+
+[2024-09-02 18:22:02,394][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/mmaia/fedliver_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 2041, in load_state_dict
+    raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+RuntimeError: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+[2024-09-02 18:22:02,394][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-09-02 18:22:02,394][flwr][INFO] - 
+[2024-09-02 18:22:02,395][flwr][INFO] - [ROUND 2]
+[2024-09-02 18:22:02,395][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-09-02 18:22:02,601][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/mmaia/fedliver_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 2041, in load_state_dict
+    raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+RuntimeError: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+
+[2024-09-02 18:22:02,601][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/mmaia/fedliver_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 2041, in load_state_dict
+    raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+RuntimeError: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+[2024-09-02 18:22:02,818][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/mmaia/fedliver_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 2041, in load_state_dict
+    raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+RuntimeError: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+
+[2024-09-02 18:22:02,818][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/mmaia/fedliver_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 2041, in load_state_dict
+    raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+RuntimeError: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=4086608, ip=10.50.9.88, actor_id=0325acb30e5ec0f3791adf8d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f8ad01f9700>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Error(s) in loading state_dict for ResUnetPlusPlus:
+	size mismatch for attn1.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn2.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+	size mismatch for attn3.conv_attn.2.bias: copying a param with shape torch.Size([]) from checkpoint, the shape in current model is torch.Size([1]).
+[2024-09-02 18:22:02,818][flwr][INFO] - aggregate_fit: received 0 results and 2 failures

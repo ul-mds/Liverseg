@@ -1,0 +1,33 @@
+strategy:
+  _target_: flwr.server.strategy.FedAvg
+  fraction_fit: 0.0001
+  min_fit_clients: ${num_clients_per_round_fit}
+  fraction_evaluate: 0.0001
+  min_evaluate_clients: ${num_clients_per_round_eval}
+  min_available_clients: ${num_clients}
+  on_fit_config_fn:
+    _target_: server.get_on_fit_config
+    config: ${config_fit}
+model:
+  _target_: model.Net
+  num_classes: ${num_classes}
+dataset:
+  input-channels: 3
+  image-ext: npy
+  mask-ext: npy
+  num_partitions: ${num_clients}
+  batch_size: ${batch_size}
+  transformation: false
+  val_ratio: 0.1
+  test_ratio: 0.2
+  data_path: /home/mds/Downloads/lits/png
+num_rounds: 30
+num_clients: 100
+batch_size: 120
+num_classes: 10
+num_clients_per_round_fit: 10
+num_clients_per_round_eval: 25
+config_fit:
+  lr: 0.01
+  momentum: 0.9
+  local_epochs: 1

@@ -1,0 +1,589 @@
+[2024-06-13 10:43:00,413][flwr][INFO] - Starting Flower simulation, config: num_rounds=1, no round_timeout
+[2024-06-13 10:43:02,538][flwr][INFO] - Flower VCE: Ray initialized with resources: {'node:__internal_head__': 1.0, 'object_store_memory': 5874438144.0, 'memory': 11748876288.0, 'CPU': 16.0, 'node:10.250.130.147': 1.0}
+[2024-06-13 10:43:02,538][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-06-13 10:43:02,538][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 0.0}
+[2024-06-13 10:43:02,546][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 5 actors
+[2024-06-13 10:43:02,547][flwr][INFO] - [INIT]
+[2024-06-13 10:43:02,547][flwr][INFO] - Requesting initial parameters from one random client
+[2024-06-13 10:43:04,716][flwr][INFO] - Received initial parameters from one random client
+[2024-06-13 10:43:04,717][flwr][INFO] - Evaluating initial global parameters
+[2024-06-13 10:49:45,820][flwr][INFO] - initial parameters (loss, other metrics): 0.7320658883306028, OrderedDict([('iou', 0.01203134091977064), ('dice_liver', tensor(0.1430, dtype=torch.float64)), ('dice_tumor', tensor(0.0103, dtype=torch.float64))])
+[2024-06-13 10:49:45,822][flwr][INFO] - 
+[2024-06-13 10:49:45,822][flwr][INFO] - [ROUND 1]
+[2024-06-13 10:49:45,822][flwr][INFO] - configure_fit: strategy sampled 10 clients (out of 30)
+[2024-06-13 11:08:18,696][flwr][INFO] - aggregate_fit: received 10 results and 0 failures
+[2024-06-13 11:08:18,924][flwr][WARNING] - No fit_metrics_aggregation_fn provided
+[2024-06-13 11:15:12,118][flwr][INFO] - fit progress: (1, 0.15512551130611274, OrderedDict([('iou', 0.01390176379763383), ('dice_liver', tensor(0.0807, dtype=torch.float64)), ('dice_tumor', tensor(0.0047, dtype=torch.float64))]), 1526.296396541)
+[2024-06-13 11:15:12,120][flwr][INFO] - configure_evaluate: strategy sampled 10 clients (out of 30)
+[2024-06-13 11:15:12,423][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=137645, ip=10.250.130.147, actor_id=32a148957d47b8fcea4819e801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f66a82f4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137645, ip=10.250.130.147, actor_id=32a148957d47b8fcea4819e801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f66a82f4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+[2024-06-13 11:15:12,423][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=137645, ip=10.250.130.147, actor_id=32a148957d47b8fcea4819e801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f66a82f4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137645, ip=10.250.130.147, actor_id=32a148957d47b8fcea4819e801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f66a82f4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+[2024-06-13 11:15:12,470][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=137647, ip=10.250.130.147, actor_id=40986bda4fe4ff7f2b4e16f701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7afa0b5e4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137647, ip=10.250.130.147, actor_id=40986bda4fe4ff7f2b4e16f701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7afa0b5e4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+[2024-06-13 11:15:12,474][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=137647, ip=10.250.130.147, actor_id=40986bda4fe4ff7f2b4e16f701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7afa0b5e4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137647, ip=10.250.130.147, actor_id=40986bda4fe4ff7f2b4e16f701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7afa0b5e4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+[2024-06-13 11:15:12,513][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=137648, ip=10.250.130.147, actor_id=b9c25adce972aa09b41aa56901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7070721f4ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137648, ip=10.250.130.147, actor_id=b9c25adce972aa09b41aa56901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7070721f4ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+[2024-06-13 11:15:12,513][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=137646, ip=10.250.130.147, actor_id=69c9bba0106afe5860e6242d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f70181e4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137646, ip=10.250.130.147, actor_id=69c9bba0106afe5860e6242d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f70181e4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+[2024-06-13 11:15:12,513][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=137648, ip=10.250.130.147, actor_id=b9c25adce972aa09b41aa56901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7070721f4ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137648, ip=10.250.130.147, actor_id=b9c25adce972aa09b41aa56901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7070721f4ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+[2024-06-13 11:15:12,517][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=137646, ip=10.250.130.147, actor_id=69c9bba0106afe5860e6242d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f70181e4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137646, ip=10.250.130.147, actor_id=69c9bba0106afe5860e6242d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f70181e4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+[2024-06-13 11:15:12,571][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=137649, ip=10.250.130.147, actor_id=5c4fc3fa7e6c06a6deb2079101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7e89e82e4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137649, ip=10.250.130.147, actor_id=5c4fc3fa7e6c06a6deb2079101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7e89e82e4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+[2024-06-13 11:15:12,571][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=137647, ip=10.250.130.147, actor_id=40986bda4fe4ff7f2b4e16f701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7afa0b5e4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137647, ip=10.250.130.147, actor_id=40986bda4fe4ff7f2b4e16f701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7afa0b5e4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+[2024-06-13 11:15:12,572][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=137645, ip=10.250.130.147, actor_id=32a148957d47b8fcea4819e801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f66a82f4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137645, ip=10.250.130.147, actor_id=32a148957d47b8fcea4819e801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f66a82f4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+[2024-06-13 11:15:12,572][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=137649, ip=10.250.130.147, actor_id=5c4fc3fa7e6c06a6deb2079101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7e89e82e4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137649, ip=10.250.130.147, actor_id=5c4fc3fa7e6c06a6deb2079101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7e89e82e4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+[2024-06-13 11:15:12,572][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=137646, ip=10.250.130.147, actor_id=69c9bba0106afe5860e6242d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f70181e4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137646, ip=10.250.130.147, actor_id=69c9bba0106afe5860e6242d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f70181e4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+[2024-06-13 11:15:12,572][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=137647, ip=10.250.130.147, actor_id=40986bda4fe4ff7f2b4e16f701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7afa0b5e4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137647, ip=10.250.130.147, actor_id=40986bda4fe4ff7f2b4e16f701000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7afa0b5e4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+[2024-06-13 11:15:12,572][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=137645, ip=10.250.130.147, actor_id=32a148957d47b8fcea4819e801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f66a82f4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137645, ip=10.250.130.147, actor_id=32a148957d47b8fcea4819e801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f66a82f4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+[2024-06-13 11:15:12,572][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=137646, ip=10.250.130.147, actor_id=69c9bba0106afe5860e6242d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f70181e4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137646, ip=10.250.130.147, actor_id=69c9bba0106afe5860e6242d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f70181e4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+[2024-06-13 11:15:12,580][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=137648, ip=10.250.130.147, actor_id=b9c25adce972aa09b41aa56901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7070721f4ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137648, ip=10.250.130.147, actor_id=b9c25adce972aa09b41aa56901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7070721f4ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+[2024-06-13 11:15:12,580][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=137648, ip=10.250.130.147, actor_id=b9c25adce972aa09b41aa56901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7070721f4ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137648, ip=10.250.130.147, actor_id=b9c25adce972aa09b41aa56901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7070721f4ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+[2024-06-13 11:15:12,625][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=137649, ip=10.250.130.147, actor_id=5c4fc3fa7e6c06a6deb2079101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7e89e82e4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137649, ip=10.250.130.147, actor_id=5c4fc3fa7e6c06a6deb2079101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7e89e82e4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+[2024-06-13 11:15:12,625][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=137649, ip=10.250.130.147, actor_id=5c4fc3fa7e6c06a6deb2079101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7e89e82e4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+TypeError: LiverClient.evaluate() missing 1 required positional argument: 'config'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=137649, ip=10.250.130.147, actor_id=5c4fc3fa7e6c06a6deb2079101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7e89e82e4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: LiverClient.evaluate() missing 1 required positional argument: 'config'
+[2024-06-13 11:15:12,626][flwr][INFO] - aggregate_evaluate: received 0 results and 10 failures
+[2024-06-13 11:15:12,626][flwr][INFO] - 
+[2024-06-13 11:15:12,626][flwr][INFO] - [SUMMARY]
+[2024-06-13 11:15:12,626][flwr][INFO] - Run finished 1 rounds in 1526.80s
+[2024-06-13 11:15:12,628][flwr][INFO] - History (loss, centralized):
+[2024-06-13 11:15:12,628][flwr][INFO] - 	'\tround 0: 0.7320658883306028\n\tround 1: 0.15512551130611274\n'History (metrics, centralized):
+[2024-06-13 11:15:12,628][flwr][INFO] - 	{'dice_liver': [(0, tensor(0.1430, dtype=torch.float64)),
+[2024-06-13 11:15:12,628][flwr][INFO] - 	                (1, tensor(0.0807, dtype=torch.float64))],
+[2024-06-13 11:15:12,629][flwr][INFO] - 	 'dice_tumor': [(0, tensor(0.0103, dtype=torch.float64)),
+[2024-06-13 11:15:12,629][flwr][INFO] - 	                (1, tensor(0.0047, dtype=torch.float64))],
+[2024-06-13 11:15:12,629][flwr][INFO] - 	 'iou': [(0, 0.01203134091977064), (1, 0.01390176379763383)]}
+[2024-06-13 11:15:12,629][flwr][INFO] - 

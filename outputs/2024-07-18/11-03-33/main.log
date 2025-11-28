@@ -1,0 +1,19 @@
+[2024-07-18 11:03:34,072][flwr][WARNING] - 
+Setting `min_available_clients` lower than `min_fit_clients` or
+`min_evaluate_clients` can cause the server to fail when there are too few clients
+connected to the server. `min_available_clients` must be set to a value larger
+than or equal to the values of `min_fit_clients` and `min_evaluate_clients`.
+
+[2024-07-18 11:03:34,073][flwr][INFO] - Starting Flower simulation, config: num_rounds=2, no round_timeout
+[2024-07-18 11:03:36,382][flwr][INFO] - Flower VCE: Ray initialized with resources: {'node:10.250.130.147': 1.0, 'CPU': 16.0, 'node:__internal_head__': 1.0, 'memory': 12296287028.0, 'object_store_memory': 6148143513.0}
+[2024-07-18 11:03:36,383][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-07-18 11:03:36,383][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 0.0}
+[2024-07-18 11:03:36,391][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 5 actors
+[2024-07-18 11:03:36,391][flwr][INFO] - [INIT]
+[2024-07-18 11:03:36,391][flwr][INFO] - Requesting initial parameters from one random client
+[2024-07-18 11:03:38,598][flwr][INFO] - Received initial parameters from one random client
+[2024-07-18 11:03:38,598][flwr][INFO] - Evaluating initial global parameters
+[2024-07-18 11:33:51,778][flwr][INFO] - initial parameters (loss, other metrics): 0.712749707306594, OrderedDict([('iou', 0.09063198289898905), ('dice_liver', tensor(0.1452, dtype=torch.float64)), ('dice_tumor', tensor(0.0089, dtype=torch.float64))])
+[2024-07-18 11:33:51,782][flwr][INFO] - 
+[2024-07-18 11:33:51,783][flwr][INFO] - [ROUND 1]
+[2024-07-18 11:33:51,783][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)

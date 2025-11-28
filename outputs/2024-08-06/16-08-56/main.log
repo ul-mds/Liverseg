@@ -1,0 +1,443 @@
+[2024-08-06 16:08:57,061][flwr][INFO] - Starting Flower simulation, config: num_rounds=15, no round_timeout
+[2024-08-06 16:08:59,753][flwr][INFO] - Flower VCE: Ray initialized with resources: {'GPU': 1.0, 'memory': 72202084967.0, 'object_store_memory': 35229464985.0, 'node:10.50.9.88': 1.0, 'accelerator_type:T4': 1.0, 'CPU': 8.0, 'node:__internal_head__': 1.0}
+[2024-08-06 16:08:59,754][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-08-06 16:08:59,754][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 1.0}
+[2024-08-06 16:08:59,767][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 1 actors
+[2024-08-06 16:08:59,767][flwr][INFO] - [INIT]
+[2024-08-06 16:08:59,767][flwr][INFO] - Requesting initial parameters from one random client
+[2024-08-06 16:09:02,919][flwr][INFO] - Received initial parameters from one random client
+[2024-08-06 16:09:02,919][flwr][INFO] - Evaluating initial global parameters
+[2024-08-06 16:09:10,707][flwr][INFO] - initial parameters (loss, other metrics): 0.7041021635135015, OrderedDict([('ind_iou_0', 0.0733263541135901), ('ind_dice_liver_0', tensor(0.1219, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0005, dtype=torch.float64)), ('ind_iou_1', 0.09523678564269002), ('ind_dice_liver_1', tensor(0.1550, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0151, dtype=torch.float64)), ('all_iou', 0.08434917889723074), ('all_dice_liver', tensor(0.1422, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0079, dtype=torch.float64))])
+[2024-08-06 16:09:10,713][flwr][INFO] - 
+[2024-08-06 16:09:10,713][flwr][INFO] - [ROUND 1]
+[2024-08-06 16:09:10,713][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:10:24,040][flwr][INFO] - aggregate_fit: received 2 results and 0 failures
+[2024-08-06 16:10:24,184][flwr][WARNING] - No fit_metrics_aggregation_fn provided
+[2024-08-06 16:10:28,058][flwr][INFO] - fit progress: (1, 0.009348516590155972, OrderedDict([('ind_iou_0', 0.9134225164641213), ('ind_dice_liver_0', tensor(0.9230, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0617, dtype=torch.float64)), ('ind_iou_1', 0.9074392456108766), ('ind_dice_liver_1', tensor(0.9405, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.4555, dtype=torch.float64)), ('all_iou', 0.9076312696328359), ('all_dice_liver', tensor(0.9317, dtype=torch.float64)), ('all_dice_tumour', tensor(0.3065, dtype=torch.float64))]), 77.34508020197973)
+[2024-08-06 16:10:28,063][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:10:28,798][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/recordset_compat.py", line 301, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+[2024-08-06 16:10:28,799][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/recordset_compat.py", line 301, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+[2024-08-06 16:10:29,340][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/recordset_compat.py", line 301, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+[2024-08-06 16:10:29,340][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/recordset_compat.py", line 301, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+[2024-08-06 16:10:29,341][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-06 16:10:29,341][flwr][INFO] - 
+[2024-08-06 16:10:29,341][flwr][INFO] - [ROUND 2]
+[2024-08-06 16:10:29,342][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:11:42,560][flwr][INFO] - aggregate_fit: received 2 results and 0 failures
+[2024-08-06 16:11:46,666][flwr][INFO] - fit progress: (2, 0.009348516847239807, OrderedDict([('ind_iou_0', 0.9201489009295528), ('ind_dice_liver_0', tensor(0.9283, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0470, dtype=torch.float64)), ('ind_iou_1', 0.9039833984842823), ('ind_dice_liver_1', tensor(0.9385, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.4640, dtype=torch.float64)), ('all_iou', 0.9106365285672978), ('all_dice_liver', tensor(0.9343, dtype=torch.float64)), ('all_dice_tumour', tensor(0.2869, dtype=torch.float64))]), 155.952798045706)
+[2024-08-06 16:11:46,671][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:11:47,292][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/recordset_compat.py", line 301, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+[2024-08-06 16:11:47,293][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/recordset_compat.py", line 301, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+[2024-08-06 16:11:47,806][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/recordset_compat.py", line 301, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+[2024-08-06 16:11:47,806][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/recordset_compat.py", line 301, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+[2024-08-06 16:11:47,806][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-06 16:11:47,807][flwr][INFO] - 
+[2024-08-06 16:11:47,807][flwr][INFO] - [ROUND 3]
+[2024-08-06 16:11:47,807][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:13:02,229][flwr][INFO] - aggregate_fit: received 2 results and 0 failures
+[2024-08-06 16:13:06,522][flwr][INFO] - fit progress: (3, 0.009348516842389168, OrderedDict([('ind_iou_0', 0.9218571466842737), ('ind_dice_liver_0', tensor(0.9279, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0610, dtype=torch.float64)), ('ind_iou_1', 0.8924822875793174), ('ind_dice_liver_1', tensor(0.9382, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.5374, dtype=torch.float64)), ('all_iou', 0.9118884571846381), ('all_dice_liver', tensor(0.9358, dtype=torch.float64)), ('all_dice_tumour', tensor(0.2656, dtype=torch.float64))]), 235.80946265580133)
+[2024-08-06 16:13:06,527][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:13:07,144][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/recordset_compat.py", line 301, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+[2024-08-06 16:13:07,145][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/recordset_compat.py", line 301, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+[2024-08-06 16:13:07,662][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/recordset_compat.py", line 301, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+[2024-08-06 16:13:07,663][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/recordset_compat.py", line 301, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=810467, ip=10.50.9.88, actor_id=b2ecd8dc0cd370e1671dab6601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f4e2038a5b0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+[2024-08-06 16:13:07,663][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-06 16:13:07,663][flwr][INFO] - 
+[2024-08-06 16:13:07,663][flwr][INFO] - [ROUND 4]
+[2024-08-06 16:13:07,664][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)

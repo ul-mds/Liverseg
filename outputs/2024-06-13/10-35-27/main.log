@@ -1,0 +1,614 @@
+[2024-06-13 10:35:27,625][flwr][INFO] - Starting Flower simulation, config: num_rounds=1, no round_timeout
+[2024-06-13 10:35:30,033][flwr][INFO] - Flower VCE: Ray initialized with resources: {'object_store_memory': 6066353356.0, 'memory': 12132706715.0, 'CPU': 16.0, 'node:10.250.130.147': 1.0, 'node:__internal_head__': 1.0}
+[2024-06-13 10:35:30,034][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-06-13 10:35:30,034][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 0.0}
+[2024-06-13 10:35:30,052][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 5 actors
+[2024-06-13 10:35:30,053][flwr][INFO] - [INIT]
+[2024-06-13 10:35:30,053][flwr][INFO] - Requesting initial parameters from one random client
+[2024-06-13 10:35:32,723][flwr][INFO] - Received initial parameters from one random client
+[2024-06-13 10:35:32,723][flwr][INFO] - Evaluating initial global parameters
+[2024-06-13 10:42:17,711][flwr][INFO] - initial parameters (loss, other metrics): 0.7081376918495751, OrderedDict([('iou', 0.004789992311181091), ('dice_liver', tensor(0.1414, dtype=torch.float64)), ('dice_tumor', tensor(0.0104, dtype=torch.float64))])
+[2024-06-13 10:42:17,713][flwr][INFO] - 
+[2024-06-13 10:42:17,713][flwr][INFO] - [ROUND 1]
+[2024-06-13 10:42:17,714][flwr][INFO] - configure_fit: strategy sampled 10 clients (out of 30)
+[2024-06-13 10:42:18,001][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+
+[2024-06-13 10:42:18,001][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+[2024-06-13 10:42:18,198][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+
+[2024-06-13 10:42:18,198][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+[2024-06-13 10:42:18,323][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+
+[2024-06-13 10:42:18,323][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+[2024-06-13 10:42:18,441][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+
+[2024-06-13 10:42:18,442][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+[2024-06-13 10:42:18,552][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+
+[2024-06-13 10:42:18,552][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+[2024-06-13 10:42:18,621][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+
+[2024-06-13 10:42:18,621][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133568, ip=10.250.130.147, actor_id=88c346e04afd2b2e5697fbd101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d3d80de8ac0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+[2024-06-13 10:42:19,527][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=133567, ip=10.250.130.147, actor_id=f3c332c4359cefecceecffd401000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7c3592be4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133567, ip=10.250.130.147, actor_id=f3c332c4359cefecceecffd401000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7c3592be4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+
+[2024-06-13 10:42:19,528][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=133567, ip=10.250.130.147, actor_id=f3c332c4359cefecceecffd401000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7c3592be4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133567, ip=10.250.130.147, actor_id=f3c332c4359cefecceecffd401000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7c3592be4a60>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+[2024-06-13 10:42:19,579][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=133566, ip=10.250.130.147, actor_id=9e97e2e36134465df8f312e401000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x738b5ffa8af0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133566, ip=10.250.130.147, actor_id=9e97e2e36134465df8f312e401000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x738b5ffa8af0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+
+[2024-06-13 10:42:19,580][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=133566, ip=10.250.130.147, actor_id=9e97e2e36134465df8f312e401000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x738b5ffa8af0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133566, ip=10.250.130.147, actor_id=9e97e2e36134465df8f312e401000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x738b5ffa8af0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+[2024-06-13 10:42:19,618][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=133565, ip=10.250.130.147, actor_id=ac1b6fb236640764679611b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7c363abe4a00>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133565, ip=10.250.130.147, actor_id=ac1b6fb236640764679611b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7c363abe4a00>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+
+[2024-06-13 10:42:19,619][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=133565, ip=10.250.130.147, actor_id=ac1b6fb236640764679611b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7c363abe4a00>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133565, ip=10.250.130.147, actor_id=ac1b6fb236640764679611b801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7c363abe4a00>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+[2024-06-13 10:42:19,667][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=133563, ip=10.250.130.147, actor_id=e6f4a89ec6c4811a95ecc32201000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x78a6ec1e8b50>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133563, ip=10.250.130.147, actor_id=e6f4a89ec6c4811a95ecc32201000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x78a6ec1e8b50>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+
+[2024-06-13 10:42:19,667][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=133563, ip=10.250.130.147, actor_id=e6f4a89ec6c4811a95ecc32201000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x78a6ec1e8b50>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/client.py", line 63, in fit
+    train(self.model,self.trainloader,optimizer,criterion,epochs,self.device)
+TypeError: train() takes 5 positional arguments but 6 were given
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=133563, ip=10.250.130.147, actor_id=e6f4a89ec6c4811a95ecc32201000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x78a6ec1e8b50>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() takes 5 positional arguments but 6 were given
+[2024-06-13 10:42:19,668][flwr][INFO] - aggregate_fit: received 0 results and 10 failures

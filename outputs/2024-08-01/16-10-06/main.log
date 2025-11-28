@@ -1,0 +1,9 @@
+[2024-08-01 16:10:06,700][flwr][INFO] - Starting Flower simulation, config: num_rounds=15, no round_timeout
+[2024-08-01 16:10:10,292][flwr][INFO] - Flower VCE: Ray initialized with resources: {'GPU': 1.0, 'node:__internal_head__': 1.0, 'memory': 73405686784.0, 'object_store_memory': 35745294336.0, 'node:10.50.9.88': 1.0, 'CPU': 8.0, 'accelerator_type:T4': 1.0}
+[2024-08-01 16:10:10,293][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-08-01 16:10:10,293][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 0.0}
+[2024-08-01 16:10:10,306][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 2 actors
+[2024-08-01 16:10:10,306][flwr][INFO] - [INIT]
+[2024-08-01 16:10:10,306][flwr][INFO] - Requesting initial parameters from one random client
+[2024-08-01 16:10:13,393][flwr][INFO] - Received initial parameters from one random client
+[2024-08-01 16:10:13,393][flwr][INFO] - Evaluating initial global parameters

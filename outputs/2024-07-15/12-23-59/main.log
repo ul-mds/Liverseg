@@ -1,0 +1,300 @@
+[2024-07-15 12:23:59,175][flwr][INFO] - Starting Flower simulation, config: num_rounds=30, no round_timeout
+[2024-07-15 12:24:02,454][flwr][INFO] - Flower VCE: Ray initialized with resources: {'CPU': 16.0, 'node:10.250.130.147': 1.0, 'node:__internal_head__': 1.0, 'object_store_memory': 6873065472.0, 'memory': 13746130944.0}
+[2024-07-15 12:24:02,454][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-07-15 12:24:02,454][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 0.0}
+[2024-07-15 12:24:02,464][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 5 actors
+[2024-07-15 12:24:02,464][flwr][INFO] - [INIT]
+[2024-07-15 12:24:02,464][flwr][INFO] - Requesting initial parameters from one random client
+[2024-07-15 12:24:04,548][flwr][INFO] - Received initial parameters from one random client
+[2024-07-15 12:24:04,548][flwr][INFO] - Evaluating initial global parameters
+[2024-07-15 12:28:01,917][flwr][INFO] - initial parameters (loss, other metrics): 13.516624070596004, OrderedDict([('iou', 2.842514033210129e-11), ('dice_liver', tensor(0.9337, dtype=torch.float64)), ('dice_tumor', tensor(0.9217, dtype=torch.float64))])
+[2024-07-15 12:28:01,921][flwr][INFO] - 
+[2024-07-15 12:28:01,921][flwr][INFO] - [ROUND 1]
+[2024-07-15 12:28:01,921][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-07-15 13:32:44,277][flwr][INFO] - aggregate_fit: received 2 results and 0 failures
+[2024-07-15 13:32:44,333][flwr][WARNING] - No fit_metrics_aggregation_fn provided
+[2024-07-15 13:36:12,469][flwr][INFO] - fit progress: (1, -140.51899775214818, OrderedDict([('iou', 0.44323891099456175), ('dice_liver', tensor(1.4043, dtype=torch.float64)), ('dice_tumor', tensor(1.5100, dtype=torch.float64))]), 4090.548565777999)
+[2024-07-15 13:36:12,471][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-07-15 13:37:17,211][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=285790, ip=10.250.130.147, actor_id=1b8d4b6fc56fcc6b34da6a7d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d76cffe4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/recordset_compat.py", line 294, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=285790, ip=10.250.130.147, actor_id=1b8d4b6fc56fcc6b34da6a7d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d76cffe4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+[2024-07-15 13:37:17,211][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=285790, ip=10.250.130.147, actor_id=1b8d4b6fc56fcc6b34da6a7d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d76cffe4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/recordset_compat.py", line 294, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=285790, ip=10.250.130.147, actor_id=1b8d4b6fc56fcc6b34da6a7d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d76cffe4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+[2024-07-15 13:37:17,449][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=285789, ip=10.250.130.147, actor_id=f395f5893f7f9cf1bda4366f01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x74eafcde4af0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/recordset_compat.py", line 294, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=285789, ip=10.250.130.147, actor_id=f395f5893f7f9cf1bda4366f01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x74eafcde4af0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+[2024-07-15 13:37:17,449][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=285789, ip=10.250.130.147, actor_id=f395f5893f7f9cf1bda4366f01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x74eafcde4af0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/recordset_compat.py", line 294, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=285789, ip=10.250.130.147, actor_id=f395f5893f7f9cf1bda4366f01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x74eafcde4af0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+[2024-07-15 13:37:17,449][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-07-15 13:37:17,449][flwr][INFO] - 
+[2024-07-15 13:37:17,449][flwr][INFO] - [ROUND 2]
+[2024-07-15 13:37:17,449][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-07-15 14:42:20,978][flwr][INFO] - aggregate_fit: received 2 results and 0 failures
+[2024-07-15 14:46:03,656][flwr][INFO] - fit progress: (2, -337.1169007619222, OrderedDict([('iou', 0.7149814337508421), ('dice_liver', tensor(1.6377, dtype=torch.float64)), ('dice_tumor', tensor(1.6574, dtype=torch.float64))]), 8281.735386898)
+[2024-07-15 14:46:03,657][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-07-15 14:47:09,265][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=285789, ip=10.250.130.147, actor_id=f395f5893f7f9cf1bda4366f01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x74eafcde4af0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/recordset_compat.py", line 294, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=285789, ip=10.250.130.147, actor_id=f395f5893f7f9cf1bda4366f01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x74eafcde4af0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+[2024-07-15 14:47:09,266][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=285789, ip=10.250.130.147, actor_id=f395f5893f7f9cf1bda4366f01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x74eafcde4af0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/recordset_compat.py", line 294, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=285789, ip=10.250.130.147, actor_id=f395f5893f7f9cf1bda4366f01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x74eafcde4af0>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+[2024-07-15 14:47:09,322][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2613, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/ray/_private/worker.py", line 861, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=285790, ip=10.250.130.147, actor_id=1b8d4b6fc56fcc6b34da6a7d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d76cffe4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/recordset_compat.py", line 294, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=285790, ip=10.250.130.147, actor_id=1b8d4b6fc56fcc6b34da6a7d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d76cffe4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+[2024-07-15 14:47:09,322][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=285790, ip=10.250.130.147, actor_id=1b8d4b6fc56fcc6b34da6a7d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d76cffe4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/recordset_compat.py", line 294, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=285790, ip=10.250.130.147, actor_id=1b8d4b6fc56fcc6b34da6a7d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7d76cffe4a90>)
+  File "/home/mds/Desktop/python_projects/fedliversegsimulation/.venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+[2024-07-15 14:47:09,322][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-07-15 14:47:09,322][flwr][INFO] - 
+[2024-07-15 14:47:09,322][flwr][INFO] - [ROUND 3]
+[2024-07-15 14:47:09,323][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)

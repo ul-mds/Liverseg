@@ -1,0 +1,13 @@
+[2024-07-03 11:47:21,303][flwr][INFO] - Starting Flower simulation, config: num_rounds=1, no round_timeout
+[2024-07-03 11:47:23,441][flwr][INFO] - Flower VCE: Ray initialized with resources: {'node:__internal_head__': 1.0, 'memory': 12291246491.0, 'object_store_memory': 6145623244.0, 'node:10.250.130.147': 1.0, 'CPU': 16.0}
+[2024-07-03 11:47:23,441][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-07-03 11:47:23,442][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 0.0}
+[2024-07-03 11:47:23,449][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 5 actors
+[2024-07-03 11:47:23,450][flwr][INFO] - [INIT]
+[2024-07-03 11:47:23,450][flwr][INFO] - Requesting initial parameters from one random client
+[2024-07-03 11:47:25,583][flwr][INFO] - Received initial parameters from one random client
+[2024-07-03 11:47:25,583][flwr][INFO] - Evaluating initial global parameters
+[2024-07-03 11:54:15,141][flwr][INFO] - initial parameters (loss, other metrics): 0.7049579159102028, OrderedDict([('iou', 0.005009759046656136), ('dice_liver', tensor(0.1425, dtype=torch.float64)), ('dice_tumor', tensor(0.0109, dtype=torch.float64))])
+[2024-07-03 11:54:15,144][flwr][INFO] - 
+[2024-07-03 11:54:15,144][flwr][INFO] - [ROUND 1]
+[2024-07-03 11:54:15,144][flwr][INFO] - configure_fit: strategy sampled 10 clients (out of 10)

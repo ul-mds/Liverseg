@@ -1,0 +1,27 @@
+[2024-07-29 10:51:18,263][flwr][WARNING] - 
+Setting `min_available_clients` lower than `min_fit_clients` or
+`min_evaluate_clients` can cause the server to fail when there are too few clients
+connected to the server. `min_available_clients` must be set to a value larger
+than or equal to the values of `min_fit_clients` and `min_evaluate_clients`.
+
+[2024-07-29 10:51:18,266][flwr][INFO] - Starting Flower simulation, config: num_rounds=30, no round_timeout
+[2024-07-29 10:51:21,101][flwr][INFO] - Flower VCE: Ray initialized with resources: {'memory': 74825882624.0, 'node:10.50.9.88': 1.0, 'object_store_memory': 36353949696.0, 'accelerator_type:T4': 1.0, 'CPU': 8.0, 'GPU': 1.0, 'node:__internal_head__': 1.0}
+[2024-07-29 10:51:21,101][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-07-29 10:51:21,101][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 0.0}
+[2024-07-29 10:51:21,115][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 2 actors
+[2024-07-29 10:51:21,115][flwr][INFO] - [INIT]
+[2024-07-29 10:51:21,115][flwr][INFO] - Requesting initial parameters from one random client
+[2024-07-29 10:51:24,190][flwr][INFO] - Received initial parameters from one random client
+[2024-07-29 10:51:24,190][flwr][INFO] - Evaluating initial global parameters
+[2024-07-29 10:55:29,688][flwr][INFO] - initial parameters (loss, other metrics): -0.5096210175064262, OrderedDict([('iou', 0.19954368773308115), ('dice_liver', tensor(0.2863, dtype=torch.float64)), ('dice_tumor', tensor(0.1752, dtype=torch.float64))])
+[2024-07-29 10:55:29,692][flwr][INFO] - 
+[2024-07-29 10:55:29,692][flwr][INFO] - [ROUND 1]
+[2024-07-29 10:55:29,693][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-07-29 10:55:29,693][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-07-29 10:58:51,823][flwr][INFO] - fit progress: (1, -0.5096210175064262, OrderedDict([('iou', 0.19954368773308115), ('dice_liver', tensor(0.2863, dtype=torch.float64)), ('dice_tumor', tensor(0.1752, dtype=torch.float64))]), 202.13074641791172)
+[2024-07-29 10:58:51,825][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-07-29 10:58:51,825][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-07-29 10:58:51,825][flwr][INFO] - 
+[2024-07-29 10:58:51,825][flwr][INFO] - [ROUND 2]
+[2024-07-29 10:58:51,826][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-07-29 10:58:51,826][flwr][INFO] - configure_fit: no clients selected, cancel

@@ -1,0 +1,157 @@
+[2025-01-13 16:04:11,344][flwr][INFO] - Starting Flower simulation, config: num_rounds=40, no round_timeout
+[2025-01-13 16:04:33,884][flwr][INFO] - Flower VCE: Ray initialized with resources: {'GPU': 3.0, 'object_store_memory': 200000000000.0, 'memory': 814621867008.0, 'node:172.18.62.12': 1.0, 'node:__internal_head__': 1.0, 'CPU': 128.0, 'accelerator_type:A30': 1.0}
+[2025-01-13 16:04:33,884][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2025-01-13 16:04:33,884][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 1.0}
+[2025-01-13 16:04:33,897][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 3 actors
+[2025-01-13 16:04:33,897][flwr][INFO] - [INIT]
+[2025-01-13 16:04:33,898][flwr][INFO] - Requesting initial parameters from one random client
+[2025-01-13 16:04:38,735][flwr][INFO] - Received initial parameters from one random client
+[2025-01-13 16:04:38,735][flwr][INFO] - Evaluating initial global parameters
+[2025-01-13 16:09:20,449][flwr][INFO] - initial parameters (loss, other metrics): 0.6043324906392273, OrderedDict([('ind_iou_0', 0.22238133017250383), ('ind_dice_liver_0', tensor(0.1631, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0091, dtype=torch.float64)), ('ind_iou_1', 0.22889229649377063), ('ind_dice_liver_1', tensor(0.1618, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0083, dtype=torch.float64)), ('all_iou', 0.2230612170048309), ('all_dice_liver', tensor(0.1630, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0090, dtype=torch.float64))])
+[2025-01-13 16:09:20,647][flwr][INFO] - 
+[2025-01-13 16:09:20,648][flwr][INFO] - [ROUND 1]
+[2025-01-13 16:09:20,648][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2025-01-13 17:29:13,104][flwr][INFO] - aggregate_fit: received 2 results and 0 failures
+[2025-01-13 17:29:13,166][flwr][WARNING] - No fit_metrics_aggregation_fn provided
+[2025-01-13 17:33:34,121][flwr][INFO] - fit progress: (1, 0.0085944312973464, OrderedDict([('ind_iou_0', 0.9297463772126595), ('ind_dice_liver_0', tensor(0.9527, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.5062, dtype=torch.float64)), ('ind_iou_1', 0.9211134850062698), ('ind_dice_liver_1', tensor(0.9457, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.3963, dtype=torch.float64)), ('all_iou', 0.9290350078343115), ('all_dice_liver', tensor(0.9521, dtype=torch.float64)), ('all_dice_tumour', tensor(0.4986, dtype=torch.float64))]), 5053.473754147068)
+[2025-01-13 17:33:34,129][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2025-01-13 17:33:46,477][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=753785, ip=172.18.62.12, actor_id=5db4e7172d4fc054ea26b5a301000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1469141719d0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/recordset_compat.py", line 301, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=753785, ip=172.18.62.12, actor_id=5db4e7172d4fc054ea26b5a301000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1469141719d0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+[2025-01-13 17:33:46,477][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=753785, ip=172.18.62.12, actor_id=5db4e7172d4fc054ea26b5a301000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1469141719d0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/recordset_compat.py", line 301, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=753785, ip=172.18.62.12, actor_id=5db4e7172d4fc054ea26b5a301000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1469141719d0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+[2025-01-13 17:35:11,707][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=753786, ip=172.18.62.12, actor_id=1f51a63f33c1504ce38bc51201000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x14c200131a00>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/recordset_compat.py", line 301, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=753786, ip=172.18.62.12, actor_id=1f51a63f33c1504ce38bc51201000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x14c200131a00>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+[2025-01-13 17:35:11,707][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=753786, ip=172.18.62.12, actor_id=1f51a63f33c1504ce38bc51201000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x14c200131a00>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 141, in handle_legacy_message_from_msgtype
+    out_recordset = evaluateres_to_recordset(evaluate_res)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/recordset_compat.py", line 301, in evaluateres_to_recordset
+    recordset.configs_records[f"{res_str}.metrics"] = ConfigsRecord(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/record/configsrecord.py", line 85, in __init__
+    self[k] = configs_dict[k]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/record/typeddict.py", line 38, in __setitem__
+    self._check_value_fn(value)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/record/configsrecord.py", line 57, in _check_value
+    is_valid(value)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/common/record/configsrecord.py", line 35, in is_valid
+    raise TypeError(
+TypeError: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=753786, ip=172.18.62.12, actor_id=1f51a63f33c1504ce38bc51201000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x14c200131a00>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Not all values are of valid type. Expected `typing.Union[int, float, str, bytes, bool, typing.List[int], typing.List[float], typing.List[str], typing.List[bytes], typing.List[bool]]` but `<class 'torch.Tensor'>` was passed.
+[2025-01-13 17:35:11,708][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2025-01-13 17:35:11,708][flwr][INFO] - 
+[2025-01-13 17:35:11,708][flwr][INFO] - [ROUND 2]
+[2025-01-13 17:35:11,708][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)

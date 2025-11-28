@@ -1,0 +1,1910 @@
+[2024-08-06 16:20:52,414][flwr][INFO] - Starting Flower simulation, config: num_rounds=15, no round_timeout
+[2024-08-06 16:20:55,140][flwr][INFO] - Flower VCE: Ray initialized with resources: {'node:__internal_head__': 1.0, 'memory': 72101520794.0, 'CPU': 8.0, 'accelerator_type:T4': 1.0, 'GPU': 1.0, 'object_store_memory': 35186366054.0, 'node:10.50.9.88': 1.0}
+[2024-08-06 16:20:55,140][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-08-06 16:20:55,140][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 1.0}
+[2024-08-06 16:20:55,154][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 1 actors
+[2024-08-06 16:20:55,154][flwr][INFO] - [INIT]
+[2024-08-06 16:20:55,154][flwr][INFO] - Requesting initial parameters from one random client
+[2024-08-06 16:20:58,316][flwr][INFO] - Received initial parameters from one random client
+[2024-08-06 16:20:58,316][flwr][INFO] - Evaluating initial global parameters
+[2024-08-06 16:21:06,269][flwr][INFO] - initial parameters (loss, other metrics): 0.7030080407857895, OrderedDict([('ind_iou_0', 0.03682351196878235), ('ind_dice_liver_0', tensor(0.1224, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0005, dtype=torch.float64)), ('ind_iou_1', 0.05197534632714431), ('ind_dice_liver_1', tensor(0.1556, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0150, dtype=torch.float64)), ('all_iou', 0.044398946821042784), ('all_dice_liver', tensor(0.1411, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0078, dtype=torch.float64))])
+[2024-08-06 16:21:06,275][flwr][INFO] - 
+[2024-08-06 16:21:06,275][flwr][INFO] - [ROUND 1]
+[2024-08-06 16:21:06,275][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:21:18,924][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:21:18,924][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:21:27,330][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:21:27,330][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:21:27,331][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2024-08-06 16:21:31,264][flwr][INFO] - fit progress: (1, 0.7030080432693163, OrderedDict([('ind_iou_0', 0.03682284222928504), ('ind_dice_liver_0', tensor(0.1231, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0005, dtype=torch.float64)), ('ind_iou_1', 0.051974850969366576), ('ind_dice_liver_1', tensor(0.1550, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0151, dtype=torch.float64)), ('all_iou', 0.04440107656713754), ('all_dice_liver', tensor(0.1395, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0079, dtype=torch.float64))]), 24.98891726974398)
+[2024-08-06 16:21:31,269][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:21:31,570][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:21:31,570][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:21:31,758][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:21:31,759][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:21:31,759][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-06 16:21:31,759][flwr][INFO] - 
+[2024-08-06 16:21:31,759][flwr][INFO] - [ROUND 2]
+[2024-08-06 16:21:31,759][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:21:40,400][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:21:40,400][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:21:48,908][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:21:48,909][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:21:48,909][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2024-08-06 16:21:52,806][flwr][INFO] - fit progress: (2, 0.7030080358187357, OrderedDict([('ind_iou_0', 0.03682181294220093), ('ind_dice_liver_0', tensor(0.1217, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0005, dtype=torch.float64)), ('ind_iou_1', 0.05197498125960468), ('ind_dice_liver_1', tensor(0.1564, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0152, dtype=torch.float64)), ('all_iou', 0.044399959417152884), ('all_dice_liver', tensor(0.1400, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0078, dtype=torch.float64))]), 46.530926500912756)
+[2024-08-06 16:21:52,810][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:21:53,088][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:21:53,088][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:21:53,275][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:21:53,275][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:21:53,275][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-06 16:21:53,276][flwr][INFO] - 
+[2024-08-06 16:21:53,276][flwr][INFO] - [ROUND 3]
+[2024-08-06 16:21:53,276][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:22:01,993][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:22:01,993][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:22:10,677][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:22:10,677][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:22:10,678][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2024-08-06 16:22:14,545][flwr][INFO] - fit progress: (3, 0.7030080532034239, OrderedDict([('ind_iou_0', 0.03682545166001261), ('ind_dice_liver_0', tensor(0.1251, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0005, dtype=torch.float64)), ('ind_iou_1', 0.05197485649796396), ('ind_dice_liver_1', tensor(0.1563, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0152, dtype=torch.float64)), ('all_iou', 0.044398713481826474), ('all_dice_liver', tensor(0.1370, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0078, dtype=torch.float64))]), 68.26994297700003)
+[2024-08-06 16:22:14,550][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:22:14,855][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:22:14,856][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:22:15,042][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:22:15,042][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:22:15,043][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-06 16:22:15,043][flwr][INFO] - 
+[2024-08-06 16:22:15,043][flwr][INFO] - [ROUND 4]
+[2024-08-06 16:22:15,043][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:22:23,921][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:22:23,921][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:22:32,726][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:22:32,726][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:22:32,726][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2024-08-06 16:22:36,703][flwr][INFO] - fit progress: (4, 0.7030080432693163, OrderedDict([('ind_iou_0', 0.036825657580999094), ('ind_dice_liver_0', tensor(0.1263, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0005, dtype=torch.float64)), ('ind_iou_1', 0.05197508008656684), ('ind_dice_liver_1', tensor(0.1595, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0152, dtype=torch.float64)), ('all_iou', 0.044398517081255195), ('all_dice_liver', tensor(0.1369, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0078, dtype=torch.float64))]), 90.42791347717866)
+[2024-08-06 16:22:36,708][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:22:37,024][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:22:37,024][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:22:37,219][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:22:37,220][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:22:37,220][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-06 16:22:37,220][flwr][INFO] - 
+[2024-08-06 16:22:37,220][flwr][INFO] - [ROUND 5]
+[2024-08-06 16:22:37,221][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:22:46,233][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:22:46,233][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:22:55,195][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:22:55,196][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:22:55,196][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2024-08-06 16:22:59,130][flwr][INFO] - fit progress: (5, 0.7030080581704775, OrderedDict([('ind_iou_0', 0.036820272566185065), ('ind_dice_liver_0', tensor(0.1184, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0005, dtype=torch.float64)), ('ind_iou_1', 0.051975081470993605), ('ind_dice_liver_1', tensor(0.1598, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0151, dtype=torch.float64)), ('all_iou', 0.04439917791338941), ('all_dice_liver', tensor(0.1394, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0078, dtype=torch.float64))]), 112.85517794592306)
+[2024-08-06 16:22:59,135][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:22:59,426][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:22:59,426][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:22:59,634][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:22:59,634][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:22:59,635][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-06 16:22:59,635][flwr][INFO] - 
+[2024-08-06 16:22:59,635][flwr][INFO] - [ROUND 6]
+[2024-08-06 16:22:59,635][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:23:08,726][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:23:08,727][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:23:17,766][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:23:17,766][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:23:17,766][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2024-08-06 16:23:21,877][flwr][INFO] - fit progress: (6, 0.7030080457528433, OrderedDict([('ind_iou_0', 0.036823148478143934), ('ind_dice_liver_0', tensor(0.1229, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0005, dtype=torch.float64)), ('ind_iou_1', 0.05197493301178202), ('ind_dice_liver_1', tensor(0.1554, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0150, dtype=torch.float64)), ('all_iou', 0.04439939136620324), ('all_dice_liver', tensor(0.1386, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0078, dtype=torch.float64))]), 135.60221179015934)
+[2024-08-06 16:23:21,882][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:23:22,203][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:23:22,203][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:23:22,419][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:23:22,419][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:23:22,420][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-06 16:23:22,420][flwr][INFO] - 
+[2024-08-06 16:23:22,420][flwr][INFO] - [ROUND 7]
+[2024-08-06 16:23:22,420][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:23:31,527][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:23:31,527][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:23:40,584][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:23:40,584][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 69, in fit
+    train(self.model,self.trainloader,self.valloader,optimizer,criterion,self.device, epoch)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 190, in train
+    val_loss, val_log = validate(net, validloader, criterion, device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:23:40,584][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2024-08-06 16:23:44,857][flwr][INFO] - fit progress: (7, 0.7030080556869507, OrderedDict([('ind_iou_0', 0.03682314987606655), ('ind_dice_liver_0', tensor(0.1239, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0005, dtype=torch.float64)), ('ind_iou_1', 0.05197506301654158), ('ind_dice_liver_1', tensor(0.1569, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0151, dtype=torch.float64)), ('all_iou', 0.04440083883976895), ('all_dice_liver', tensor(0.1416, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0079, dtype=torch.float64))]), 158.58213393902406)
+[2024-08-06 16:23:44,863][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-06 16:23:45,260][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:23:45,260][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:23:45,476][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+
+[2024-08-06 16:23:45,476][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 80, in evaluate
+    loss, log = validate(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 241, in validate
+    print(output.shape)
+UnboundLocalError: local variable 'output' referenced before assignment
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=814940, ip=10.50.9.88, actor_id=cab2d16710cee621c51f082101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f79f44b56a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: local variable 'output' referenced before assignment
+[2024-08-06 16:23:45,477][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-06 16:23:45,477][flwr][INFO] - 
+[2024-08-06 16:23:45,477][flwr][INFO] - [ROUND 8]
+[2024-08-06 16:23:45,477][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)

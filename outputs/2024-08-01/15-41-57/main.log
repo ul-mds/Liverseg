@@ -1,0 +1,134 @@
+[2024-08-01 15:41:57,686][flwr][INFO] - Starting Flower simulation, config: num_rounds=15, no round_timeout
+[2024-08-01 15:42:00,352][flwr][INFO] - Flower VCE: Ray initialized with resources: {'node:__internal_head__': 1.0, 'CPU': 8.0, 'accelerator_type:T4': 1.0, 'memory': 73517676749.0, 'GPU': 1.0, 'node:10.50.9.88': 1.0, 'object_store_memory': 35793290035.0}
+[2024-08-01 15:42:00,352][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-08-01 15:42:00,352][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 0.0}
+[2024-08-01 15:42:00,365][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 2 actors
+[2024-08-01 15:42:00,365][flwr][INFO] - [INIT]
+[2024-08-01 15:42:00,365][flwr][INFO] - Requesting initial parameters from one random client
+[2024-08-01 15:42:03,548][flwr][INFO] - Received initial parameters from one random client
+[2024-08-01 15:42:03,549][flwr][INFO] - Evaluating initial global parameters
+[2024-08-01 15:47:16,522][flwr][INFO] - initial parameters (loss, other metrics): 0.7068451924273607, OrderedDict([('ind_iou_0', 0.09076036993358454), ('ind_dice_liver_0', tensor(0.1527, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0094, dtype=torch.float64)), ('ind_iou_1', 0.09149801482531816), ('ind_dice_liver_1', tensor(0.1538, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0081, dtype=torch.float64)), ('all_iou', 0.09083799429680998), ('all_dice_liver', tensor(0.1527, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0093, dtype=torch.float64))])
+[2024-08-01 15:47:16,527][flwr][INFO] - 
+[2024-08-01 15:47:16,528][flwr][INFO] - [ROUND 1]
+[2024-08-01 15:47:16,528][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-01 15:47:16,795][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2966632, ip=10.50.9.88, actor_id=563461d07b3398e04d9e8ef901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f67f00e9640>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 65, in fit
+    train(self.model,self.trainloader,optimizer,criterion,self.device, self.cfg.local_epochs)
+TypeError: train() missing 1 required positional argument: 'epochs'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2966632, ip=10.50.9.88, actor_id=563461d07b3398e04d9e8ef901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f67f00e9640>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() missing 1 required positional argument: 'epochs'
+
+[2024-08-01 15:47:16,795][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2966632, ip=10.50.9.88, actor_id=563461d07b3398e04d9e8ef901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f67f00e9640>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 65, in fit
+    train(self.model,self.trainloader,optimizer,criterion,self.device, self.cfg.local_epochs)
+TypeError: train() missing 1 required positional argument: 'epochs'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2966632, ip=10.50.9.88, actor_id=563461d07b3398e04d9e8ef901000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f67f00e9640>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() missing 1 required positional argument: 'epochs'
+[2024-08-01 15:47:19,117][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2966631, ip=10.50.9.88, actor_id=72794a8b880782d32abdf7ba01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f25242f8670>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 65, in fit
+    train(self.model,self.trainloader,optimizer,criterion,self.device, self.cfg.local_epochs)
+TypeError: train() missing 1 required positional argument: 'epochs'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2966631, ip=10.50.9.88, actor_id=72794a8b880782d32abdf7ba01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f25242f8670>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() missing 1 required positional argument: 'epochs'
+
+[2024-08-01 15:47:19,118][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2966631, ip=10.50.9.88, actor_id=72794a8b880782d32abdf7ba01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f25242f8670>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 65, in fit
+    train(self.model,self.trainloader,optimizer,criterion,self.device, self.cfg.local_epochs)
+TypeError: train() missing 1 required positional argument: 'epochs'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2966631, ip=10.50.9.88, actor_id=72794a8b880782d32abdf7ba01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f25242f8670>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: train() missing 1 required positional argument: 'epochs'
+[2024-08-01 15:47:19,118][flwr][INFO] - aggregate_fit: received 0 results and 2 failures

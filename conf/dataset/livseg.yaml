@@ -1,0 +1,13 @@
+---
+
+input-channels: 3
+image-ext: 'npy'
+mask-ext: 'npy'
+num_partitions: 1
+batch_size: ${batch_size}
+transformation: False
+val_ratio: 0.1
+test_ratio: 0.2
+lits_data_path: "/home/sc.uni-leipzig.de/mp096jdyo/lits_dataset/npy_files"
+ircad_data_path: "/home/sc.uni-leipzig.de/mp096jdyo/3dircad/npy_files"
+sliver_data_path: "/home/sc.uni-leipzig.de/mp096jdyo/sliver07"

@@ -1,0 +1,54 @@
+/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'base': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+strategy:
+  _target_: flwr.server.strategy.FedAvg
+  fraction_fit: 0.0001
+  min_fit_clients: ${num_clients_per_round_fit}
+  fraction_evaluate: 0.0001
+  min_evaluate_clients: ${num_clients_per_round_eval}
+  min_available_clients: ${num_clients}
+  on_fit_config_fn:
+    _target_: server.get_on_fit_config
+    config: ${config_fit}
+model:
+  _target_: model.unet.UNet
+dataset:
+  input-channels: 3
+  image-ext: npy
+  mask-ext: npy
+  num_partitions: 1
+  batch_size: ${batch_size}
+  transformation: false
+  val_ratio: 0.1
+  test_ratio: 0.2
+  lits_data_path: /home/sc.uni-leipzig.de/mp096jdyo/lits_dataset/npy_files
+  ircad_data_path: /home/sc.uni-leipzig.de/mp096jdyo/3dircad/npy_files
+  sliver_data_path: /home/sc.uni-leipzig.de/mp096jdyo/sliver07
+num_rounds: 40
+num_clients: 4
+local_epochs: 4
+batch_size: 4
+num_classes: 2
+num_clients_per_round_fit: 2
+num_clients_per_round_eval: 2
+device: cuda:0
+config_fit:
+  lr: 0.0003
+  momentum: 0.9
+  weight_decay: 1.0e-05
+  nesterov: false
+  optimizer: Adam
+  loss: BCEWithLogitsLoss
+
+{'input-channels': 3, 'image-ext': 'npy', 'mask-ext': 'npy', 'num_partitions': 1, 'batch_size': '${batch_size}', 'transformation': False, 'val_ratio': 0.1, 'test_ratio': 0.2, 'lits_data_path': '/home/sc.uni-leipzig.de/mp096jdyo/lits_dataset/npy_files', 'ircad_data_path': '/home/sc.uni-leipzig.de/mp096jdyo/3dircad/npy_files', 'sliver_data_path': '/home/sc.uni-leipzig.de/mp096jdyo/sliver07'}
+/home/sc.uni-leipzig.de/mp096jdyo/3dircad/npy_files
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/main.py", line 29, in main
+    trainloaders, testloaders = prepare_multiple_datasets(cfg.dataset)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/datasets/livseg.py", line 216, in prepare_multiple_datasets
+    ircad_training_set, ircad_test_set = get_liverseg_multiclients_lits(cfg, "ircad")
+ValueError: too many values to unpack (expected 2)
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+srun: error: paula05: task 0: Exited with exit code 1

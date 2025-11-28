@@ -1,0 +1,4 @@
+- batch_size=2
+- local_epochs=4
+- num_clients=1
+- num_rounds=6

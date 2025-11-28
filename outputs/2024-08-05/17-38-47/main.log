@@ -1,0 +1,1670 @@
+[2024-08-05 17:38:48,085][flwr][INFO] - Starting Flower simulation, config: num_rounds=15, no round_timeout
+[2024-08-05 17:38:50,831][flwr][INFO] - Flower VCE: Ray initialized with resources: {'node:__internal_head__': 1.0, 'accelerator_type:T4': 1.0, 'CPU': 8.0, 'node:10.50.9.88': 1.0, 'object_store_memory': 35238796492.0, 'GPU': 1.0, 'memory': 72223858484.0}
+[2024-08-05 17:38:50,831][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-08-05 17:38:50,832][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 1.0}
+[2024-08-05 17:38:50,845][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 1 actors
+[2024-08-05 17:38:50,846][flwr][INFO] - [INIT]
+[2024-08-05 17:38:50,846][flwr][INFO] - Requesting initial parameters from one random client
+[2024-08-05 17:38:53,949][flwr][INFO] - Received initial parameters from one random client
+[2024-08-05 17:38:53,949][flwr][INFO] - Evaluating initial global parameters
+[2024-08-05 17:44:27,377][flwr][INFO] - initial parameters (loss, other metrics): 0.6633489153359947, OrderedDict([('ind_iou_0', 0.06255293461683285), ('ind_dice_liver_0', tensor(0.1490, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0093, dtype=torch.float64)), ('ind_iou_1', 0.05837387017041522), ('ind_dice_liver_1', tensor(0.1507, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0080, dtype=torch.float64)), ('all_iou', 0.06201809771825555), ('all_dice_liver', tensor(0.1492, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0091, dtype=torch.float64))])
+[2024-08-05 17:44:27,382][flwr][INFO] - 
+[2024-08-05 17:44:27,382][flwr][INFO] - [ROUND 1]
+[2024-08-05 17:44:27,382][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-05 19:31:58,874][flwr][INFO] - aggregate_fit: received 2 results and 0 failures
+[2024-08-05 19:31:59,015][flwr][WARNING] - No fit_metrics_aggregation_fn provided
+[2024-08-05 19:37:33,078][flwr][INFO] - fit progress: (1, 0.009183964641475022, OrderedDict([('ind_iou_0', 0.9217577304890828), ('ind_dice_liver_0', tensor(0.9496, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.3285, dtype=torch.float64)), ('ind_iou_1', 0.9044240484794736), ('ind_dice_liver_1', tensor(0.9423, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.2183, dtype=torch.float64)), ('all_iou', 0.9195142969162796), ('all_dice_liver', tensor(0.9485, dtype=torch.float64)), ('all_dice_tumour', tensor(0.3187, dtype=torch.float64))]), 6785.696495009121)
+[2024-08-05 19:37:33,086][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-05 19:37:33,424][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+
+[2024-08-05 19:37:33,424][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+[2024-08-05 19:37:33,619][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+
+[2024-08-05 19:37:33,619][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+[2024-08-05 19:37:33,620][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-05 19:37:33,620][flwr][INFO] - 
+[2024-08-05 19:37:33,620][flwr][INFO] - [ROUND 2]
+[2024-08-05 19:37:33,620][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-05 21:24:50,039][flwr][INFO] - aggregate_fit: received 2 results and 0 failures
+[2024-08-05 21:30:28,109][flwr][INFO] - fit progress: (2, 0.009183964620360209, OrderedDict([('ind_iou_0', 0.9221890744066966), ('ind_dice_liver_0', tensor(0.9504, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.3331, dtype=torch.float64)), ('ind_iou_1', 0.9036641279364066), ('ind_dice_liver_1', tensor(0.9426, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.2375, dtype=torch.float64)), ('all_iou', 0.9194728278955229), ('all_dice_liver', tensor(0.9484, dtype=torch.float64)), ('all_dice_tumour', tensor(0.3210, dtype=torch.float64))]), 13560.72713477211)
+[2024-08-05 21:30:28,114][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-05 21:30:28,446][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+
+[2024-08-05 21:30:28,447][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+[2024-08-05 21:30:28,636][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+
+[2024-08-05 21:30:28,637][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+[2024-08-05 21:30:28,637][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-05 21:30:28,637][flwr][INFO] - 
+[2024-08-05 21:30:28,637][flwr][INFO] - [ROUND 3]
+[2024-08-05 21:30:28,638][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-05 23:18:04,543][flwr][INFO] - aggregate_fit: received 2 results and 0 failures
+[2024-08-05 23:23:46,331][flwr][INFO] - fit progress: (3, 0.00918396462825347, OrderedDict([('ind_iou_0', 0.9222327090857224), ('ind_dice_liver_0', tensor(0.9503, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.3260, dtype=torch.float64)), ('ind_iou_1', 0.902867223703984), ('ind_dice_liver_1', tensor(0.9441, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.2286, dtype=torch.float64)), ('all_iou', 0.9206471866114476), ('all_dice_liver', tensor(0.9496, dtype=torch.float64)), ('all_dice_tumour', tensor(0.3178, dtype=torch.float64))]), 20358.94902186701)
+[2024-08-05 23:23:46,337][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-05 23:23:46,660][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+
+[2024-08-05 23:23:46,661][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+[2024-08-05 23:23:46,847][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+
+[2024-08-05 23:23:46,847][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+[2024-08-05 23:23:46,848][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-05 23:23:46,848][flwr][INFO] - 
+[2024-08-05 23:23:46,848][flwr][INFO] - [ROUND 4]
+[2024-08-05 23:23:46,848][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-06 01:11:26,225][flwr][INFO] - aggregate_fit: received 2 results and 0 failures
+[2024-08-06 01:17:07,369][flwr][INFO] - fit progress: (4, 0.009183964634874505, OrderedDict([('ind_iou_0', 0.9217803291534128), ('ind_dice_liver_0', tensor(0.9501, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.3333, dtype=torch.float64)), ('ind_iou_1', 0.90221957046418), ('ind_dice_liver_1', tensor(0.9420, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.2322, dtype=torch.float64)), ('all_iou', 0.9195931838996765), ('all_dice_liver', tensor(0.9489, dtype=torch.float64)), ('all_dice_tumour', tensor(0.3227, dtype=torch.float64))]), 27159.98682583915)
+[2024-08-06 01:17:07,375][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-06 01:17:07,710][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+
+[2024-08-06 01:17:07,710][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+[2024-08-06 01:17:07,897][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+
+[2024-08-06 01:17:07,898][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+[2024-08-06 01:17:07,898][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-06 01:17:07,899][flwr][INFO] - 
+[2024-08-06 01:17:07,899][flwr][INFO] - [ROUND 5]
+[2024-08-06 01:17:07,899][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-06 03:04:48,429][flwr][INFO] - aggregate_fit: received 2 results and 0 failures
+[2024-08-06 03:10:24,331][flwr][INFO] - fit progress: (5, 0.009183964621358837, OrderedDict([('ind_iou_0', 0.9222628116672987), ('ind_dice_liver_0', tensor(0.9498, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.3330, dtype=torch.float64)), ('ind_iou_1', 0.902473794512848), ('ind_dice_liver_1', tensor(0.9427, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.2295, dtype=torch.float64)), ('all_iou', 0.9187155014895055), ('all_dice_liver', tensor(0.9483, dtype=torch.float64)), ('all_dice_tumour', tensor(0.3229, dtype=torch.float64))]), 33956.94897051202)
+[2024-08-06 03:10:24,336][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-06 03:10:24,662][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+
+[2024-08-06 03:10:24,662][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+[2024-08-06 03:10:24,850][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+
+[2024-08-06 03:10:24,850][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+[2024-08-06 03:10:24,851][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-06 03:10:24,851][flwr][INFO] - 
+[2024-08-06 03:10:24,851][flwr][INFO] - [ROUND 6]
+[2024-08-06 03:10:24,851][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-06 04:57:53,976][flwr][INFO] - aggregate_fit: received 2 results and 0 failures
+[2024-08-06 05:03:30,689][flwr][INFO] - fit progress: (6, 0.009183964633615961, OrderedDict([('ind_iou_0', 0.9231852468718104), ('ind_dice_liver_0', tensor(0.9512, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.3316, dtype=torch.float64)), ('ind_iou_1', 0.9093930838604586), ('ind_dice_liver_1', tensor(0.9474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.2367, dtype=torch.float64)), ('all_iou', 0.9216939823711316), ('all_dice_liver', tensor(0.9501, dtype=torch.float64)), ('all_dice_tumour', tensor(0.3178, dtype=torch.float64))]), 40743.30703181913)
+[2024-08-06 05:03:30,694][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-06 05:03:31,029][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+
+[2024-08-06 05:03:31,029][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+[2024-08-06 05:03:31,208][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+
+[2024-08-06 05:03:31,209][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+[2024-08-06 05:03:31,209][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-06 05:03:31,209][flwr][INFO] - 
+[2024-08-06 05:03:31,209][flwr][INFO] - [ROUND 7]
+[2024-08-06 05:03:31,210][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-06 06:50:54,806][flwr][INFO] - aggregate_fit: received 2 results and 0 failures
+[2024-08-06 06:56:31,448][flwr][INFO] - fit progress: (7, 0.009183964626146776, OrderedDict([('ind_iou_0', 0.9214292092717907), ('ind_dice_liver_0', tensor(0.9497, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.3285, dtype=torch.float64)), ('ind_iou_1', 0.8987852925013056), ('ind_dice_liver_1', tensor(0.9390, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.2321, dtype=torch.float64)), ('all_iou', 0.9188894120392712), ('all_dice_liver', tensor(0.9482, dtype=torch.float64)), ('all_dice_tumour', tensor(0.3184, dtype=torch.float64))]), 47524.06568501238)
+[2024-08-06 06:56:31,452][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-06 06:56:31,792][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+
+[2024-08-06 06:56:31,793][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+[2024-08-06 06:56:31,968][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+
+[2024-08-06 06:56:31,968][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+[2024-08-06 06:56:31,969][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-06 06:56:31,969][flwr][INFO] - 
+[2024-08-06 06:56:31,969][flwr][INFO] - [ROUND 8]
+[2024-08-06 06:56:31,969][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-06 08:43:53,787][flwr][INFO] - aggregate_fit: received 2 results and 0 failures
+[2024-08-06 08:49:31,275][flwr][INFO] - fit progress: (8, 0.00918396462025077, OrderedDict([('ind_iou_0', 0.921692446247436), ('ind_dice_liver_0', tensor(0.9499, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.3270, dtype=torch.float64)), ('ind_iou_1', 0.9069526968904369), ('ind_dice_liver_1', tensor(0.9447, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.2326, dtype=torch.float64)), ('all_iou', 0.9197615223921224), ('all_dice_liver', tensor(0.9488, dtype=torch.float64)), ('all_dice_tumour', tensor(0.3175, dtype=torch.float64))]), 54303.89287230605)
+[2024-08-06 08:49:31,280][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-06 08:49:31,589][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+
+[2024-08-06 08:49:31,589][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+[2024-08-06 08:49:31,763][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+
+[2024-08-06 08:49:31,764][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    loss, log = test(self.model, self.valloader,criterion, self.device)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 289, in test
+    output = net(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 99, in forward
+    e1 = self.Conv1(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/fedliver_v2/model/unet.py", line 35, in forward
+    x = self.conv(x)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 138, in forward
+    self._check_input_dim(input)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 410, in _check_input_dim
+    raise ValueError("expected 4D input (got {}D input)".format(input.dim()))
+ValueError: expected 4D input (got 3D input)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=420263, ip=10.50.9.88, actor_id=e951a06a90ba19c2cf7f407d01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f43a85615e0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: expected 4D input (got 3D input)
+[2024-08-06 08:49:31,764][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-06 08:49:31,764][flwr][INFO] - 
+[2024-08-06 08:49:31,764][flwr][INFO] - [ROUND 9]
+[2024-08-06 08:49:31,765][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)

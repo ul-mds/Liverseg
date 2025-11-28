@@ -1,0 +1,882 @@
+[2024-10-10 12:13:44,326][flwr][WARNING] - 
+Setting `min_available_clients` lower than `min_fit_clients` or
+`min_evaluate_clients` can cause the server to fail when there are too few clients
+connected to the server. `min_available_clients` must be set to a value larger
+than or equal to the values of `min_fit_clients` and `min_evaluate_clients`.
+
+[2024-10-10 12:13:44,327][flwr][INFO] - Starting Flower simulation, config: num_rounds=50, no round_timeout
+[2024-10-10 12:14:06,628][flwr][INFO] - Flower VCE: Ray initialized with resources: {'GPU': 3.0, 'node:172.18.62.4': 1.0, 'object_store_memory': 200000000000.0, 'memory': 859726793728.0, 'node:__internal_head__': 1.0, 'CPU': 128.0, 'accelerator_type:A30': 1.0}
+[2024-10-10 12:14:06,628][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-10-10 12:14:06,629][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 1.0}
+[2024-10-10 12:14:06,656][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 3 actors
+[2024-10-10 12:14:06,657][flwr][INFO] - [INIT]
+[2024-10-10 12:14:06,660][flwr][INFO] - Requesting initial parameters from one random client
+[2024-10-10 12:14:10,419][flwr][INFO] - Received initial parameters from one random client
+[2024-10-10 12:14:10,419][flwr][INFO] - Evaluating initial global parameters
+[2024-10-10 12:18:50,393][flwr][INFO] - initial parameters (loss, other metrics): 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))])
+[2024-10-10 12:18:50,480][flwr][INFO] - 
+[2024-10-10 12:18:50,480][flwr][INFO] - [ROUND 1]
+[2024-10-10 12:18:50,480][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:18:50,480][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 12:21:12,427][flwr][INFO] - fit progress: (1, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 141.94689507200383)
+[2024-10-10 12:21:12,430][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:21:12,431][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 12:21:12,431][flwr][INFO] - 
+[2024-10-10 12:21:12,431][flwr][INFO] - [ROUND 2]
+[2024-10-10 12:21:12,431][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:21:12,431][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 12:23:33,279][flwr][INFO] - fit progress: (2, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 282.798795344017)
+[2024-10-10 12:23:33,282][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:23:33,282][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 12:23:33,282][flwr][INFO] - 
+[2024-10-10 12:23:33,283][flwr][INFO] - [ROUND 3]
+[2024-10-10 12:23:33,283][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:23:33,283][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 12:25:55,938][flwr][INFO] - fit progress: (3, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 425.457867975987)
+[2024-10-10 12:25:55,941][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:25:55,941][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 12:25:55,941][flwr][INFO] - 
+[2024-10-10 12:25:55,941][flwr][INFO] - [ROUND 4]
+[2024-10-10 12:25:55,942][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:25:55,942][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 12:28:18,778][flwr][INFO] - fit progress: (4, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 568.2976118659717)
+[2024-10-10 12:28:18,781][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:28:18,781][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 12:28:18,781][flwr][INFO] - 
+[2024-10-10 12:28:18,781][flwr][INFO] - [ROUND 5]
+[2024-10-10 12:28:18,781][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:28:18,781][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 12:30:40,313][flwr][INFO] - fit progress: (5, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 709.833285680972)
+[2024-10-10 12:30:40,317][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:30:40,317][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 12:30:40,318][flwr][INFO] - 
+[2024-10-10 12:30:40,318][flwr][INFO] - [ROUND 6]
+[2024-10-10 12:30:40,318][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:30:40,319][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 12:33:02,014][flwr][INFO] - fit progress: (6, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 851.5340635710163)
+[2024-10-10 12:33:02,018][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:33:02,018][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 12:33:02,018][flwr][INFO] - 
+[2024-10-10 12:33:02,018][flwr][INFO] - [ROUND 7]
+[2024-10-10 12:33:02,019][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:33:02,019][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 12:35:24,150][flwr][INFO] - fit progress: (7, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 993.6697969220113)
+[2024-10-10 12:35:24,153][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:35:24,153][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 12:35:24,153][flwr][INFO] - 
+[2024-10-10 12:35:24,154][flwr][INFO] - [ROUND 8]
+[2024-10-10 12:35:24,154][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:35:24,154][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 12:37:47,227][flwr][INFO] - fit progress: (8, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 1136.7468598249834)
+[2024-10-10 12:37:47,230][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:37:47,231][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 12:37:47,231][flwr][INFO] - 
+[2024-10-10 12:37:47,231][flwr][INFO] - [ROUND 9]
+[2024-10-10 12:37:47,231][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:37:47,231][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 12:40:09,024][flwr][INFO] - fit progress: (9, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 1278.5436580459937)
+[2024-10-10 12:40:09,027][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:40:09,028][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 12:40:09,028][flwr][INFO] - 
+[2024-10-10 12:40:09,028][flwr][INFO] - [ROUND 10]
+[2024-10-10 12:40:09,028][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:40:09,028][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 12:42:31,747][flwr][INFO] - fit progress: (10, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 1421.2666206909926)
+[2024-10-10 12:42:31,750][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:42:31,750][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 12:42:31,750][flwr][INFO] - 
+[2024-10-10 12:42:31,750][flwr][INFO] - [ROUND 11]
+[2024-10-10 12:42:31,750][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:42:31,751][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 12:44:54,690][flwr][INFO] - fit progress: (11, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 1564.2098480900167)
+[2024-10-10 12:44:54,693][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:44:54,693][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 12:44:54,693][flwr][INFO] - 
+[2024-10-10 12:44:54,694][flwr][INFO] - [ROUND 12]
+[2024-10-10 12:44:54,694][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:44:54,694][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 12:47:16,849][flwr][INFO] - fit progress: (12, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 1706.3692161999643)
+[2024-10-10 12:47:16,853][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:47:16,853][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 12:47:16,853][flwr][INFO] - 
+[2024-10-10 12:47:16,853][flwr][INFO] - [ROUND 13]
+[2024-10-10 12:47:16,853][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:47:16,853][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 12:49:38,920][flwr][INFO] - fit progress: (13, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 1848.4397837219876)
+[2024-10-10 12:49:38,923][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:49:38,923][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 12:49:38,924][flwr][INFO] - 
+[2024-10-10 12:49:38,924][flwr][INFO] - [ROUND 14]
+[2024-10-10 12:49:38,924][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:49:38,924][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 12:52:01,702][flwr][INFO] - fit progress: (14, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 1991.221631227003)
+[2024-10-10 12:52:01,705][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:52:01,705][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 12:52:01,705][flwr][INFO] - 
+[2024-10-10 12:52:01,705][flwr][INFO] - [ROUND 15]
+[2024-10-10 12:52:01,705][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:52:01,705][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 12:54:24,131][flwr][INFO] - fit progress: (15, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 2133.650973686017)
+[2024-10-10 12:54:24,134][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:54:24,135][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 12:54:24,135][flwr][INFO] - 
+[2024-10-10 12:54:24,135][flwr][INFO] - [ROUND 16]
+[2024-10-10 12:54:24,135][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:54:24,135][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 12:56:46,828][flwr][INFO] - fit progress: (16, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 2276.3478535389877)
+[2024-10-10 12:56:46,831][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:56:46,831][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 12:56:46,832][flwr][INFO] - 
+[2024-10-10 12:56:46,832][flwr][INFO] - [ROUND 17]
+[2024-10-10 12:56:46,832][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:56:46,832][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 12:59:08,499][flwr][INFO] - fit progress: (17, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 2418.019313966972)
+[2024-10-10 12:59:08,503][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:59:08,503][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 12:59:08,503][flwr][INFO] - 
+[2024-10-10 12:59:08,503][flwr][INFO] - [ROUND 18]
+[2024-10-10 12:59:08,503][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 12:59:08,503][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:01:31,782][flwr][INFO] - fit progress: (18, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 2561.3022914180183)
+[2024-10-10 13:01:31,786][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:01:31,786][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:01:31,786][flwr][INFO] - 
+[2024-10-10 13:01:31,786][flwr][INFO] - [ROUND 19]
+[2024-10-10 13:01:31,786][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:01:31,786][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:03:54,557][flwr][INFO] - fit progress: (19, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 2704.0771653549746)
+[2024-10-10 13:03:54,561][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:03:54,561][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:03:54,561][flwr][INFO] - 
+[2024-10-10 13:03:54,561][flwr][INFO] - [ROUND 20]
+[2024-10-10 13:03:54,561][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:03:54,561][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:06:17,271][flwr][INFO] - fit progress: (20, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 2846.7906037509674)
+[2024-10-10 13:06:17,274][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:06:17,274][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:06:17,274][flwr][INFO] - 
+[2024-10-10 13:06:17,274][flwr][INFO] - [ROUND 21]
+[2024-10-10 13:06:17,275][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:06:17,275][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:08:38,795][flwr][INFO] - fit progress: (21, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 2988.314639047021)
+[2024-10-10 13:08:38,798][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:08:38,798][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:08:38,798][flwr][INFO] - 
+[2024-10-10 13:08:38,799][flwr][INFO] - [ROUND 22]
+[2024-10-10 13:08:38,799][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:08:38,799][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:11:01,566][flwr][INFO] - fit progress: (22, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 3131.086209647008)
+[2024-10-10 13:11:01,570][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:11:01,570][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:11:01,570][flwr][INFO] - 
+[2024-10-10 13:11:01,570][flwr][INFO] - [ROUND 23]
+[2024-10-10 13:11:01,570][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:11:01,570][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:13:23,733][flwr][INFO] - fit progress: (23, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 3273.2532706619822)
+[2024-10-10 13:13:23,737][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:13:23,737][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:13:23,737][flwr][INFO] - 
+[2024-10-10 13:13:23,737][flwr][INFO] - [ROUND 24]
+[2024-10-10 13:13:23,737][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:13:23,737][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:15:46,381][flwr][INFO] - fit progress: (24, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 3415.9006116630044)
+[2024-10-10 13:15:46,384][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:15:46,385][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:15:46,385][flwr][INFO] - 
+[2024-10-10 13:15:46,385][flwr][INFO] - [ROUND 25]
+[2024-10-10 13:15:46,385][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:15:46,385][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:18:08,283][flwr][INFO] - fit progress: (25, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 3557.8031310659717)
+[2024-10-10 13:18:08,286][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:18:08,287][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:18:08,287][flwr][INFO] - 
+[2024-10-10 13:18:08,287][flwr][INFO] - [ROUND 26]
+[2024-10-10 13:18:08,287][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:18:08,287][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:20:30,487][flwr][INFO] - fit progress: (26, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 3700.007403205964)
+[2024-10-10 13:20:30,491][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:20:30,491][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:20:30,491][flwr][INFO] - 
+[2024-10-10 13:20:30,491][flwr][INFO] - [ROUND 27]
+[2024-10-10 13:20:30,491][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:20:30,491][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:22:53,298][flwr][INFO] - fit progress: (27, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 3842.817886450968)
+[2024-10-10 13:22:53,301][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:22:53,301][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:22:53,301][flwr][INFO] - 
+[2024-10-10 13:22:53,301][flwr][INFO] - [ROUND 28]
+[2024-10-10 13:22:53,302][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:22:53,302][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:25:16,247][flwr][INFO] - fit progress: (28, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 3985.766502656974)
+[2024-10-10 13:25:16,250][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:25:16,250][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:25:16,250][flwr][INFO] - 
+[2024-10-10 13:25:16,250][flwr][INFO] - [ROUND 29]
+[2024-10-10 13:25:16,250][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:25:16,251][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:27:37,167][flwr][INFO] - fit progress: (29, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 4126.6873437570175)
+[2024-10-10 13:27:37,171][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:27:37,171][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:27:37,171][flwr][INFO] - 
+[2024-10-10 13:27:37,171][flwr][INFO] - [ROUND 30]
+[2024-10-10 13:27:37,171][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:27:37,171][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:29:59,613][flwr][INFO] - fit progress: (30, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 4269.133030279016)
+[2024-10-10 13:29:59,616][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:29:59,616][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:29:59,617][flwr][INFO] - 
+[2024-10-10 13:29:59,617][flwr][INFO] - [ROUND 31]
+[2024-10-10 13:29:59,617][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:29:59,617][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:32:22,520][flwr][INFO] - fit progress: (31, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 4412.039970683982)
+[2024-10-10 13:32:22,523][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:32:22,523][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:32:22,524][flwr][INFO] - 
+[2024-10-10 13:32:22,524][flwr][INFO] - [ROUND 32]
+[2024-10-10 13:32:22,524][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:32:22,524][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:34:45,360][flwr][INFO] - fit progress: (32, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 4554.879517043999)
+[2024-10-10 13:34:45,363][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:34:45,363][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:34:45,363][flwr][INFO] - 
+[2024-10-10 13:34:45,363][flwr][INFO] - [ROUND 33]
+[2024-10-10 13:34:45,363][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:34:45,363][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:37:07,114][flwr][INFO] - fit progress: (33, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 4696.634442963987)
+[2024-10-10 13:37:07,118][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:37:07,118][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:37:07,118][flwr][INFO] - 
+[2024-10-10 13:37:07,118][flwr][INFO] - [ROUND 34]
+[2024-10-10 13:37:07,118][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:37:07,118][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:39:29,427][flwr][INFO] - fit progress: (34, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 4838.947301798966)
+[2024-10-10 13:39:29,431][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:39:29,431][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:39:29,431][flwr][INFO] - 
+[2024-10-10 13:39:29,431][flwr][INFO] - [ROUND 35]
+[2024-10-10 13:39:29,431][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:39:29,431][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:41:51,796][flwr][INFO] - fit progress: (35, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 4981.316015025019)
+[2024-10-10 13:41:51,799][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:41:51,799][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:41:51,800][flwr][INFO] - 
+[2024-10-10 13:41:51,800][flwr][INFO] - [ROUND 36]
+[2024-10-10 13:41:51,800][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:41:51,800][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:44:15,556][flwr][INFO] - fit progress: (36, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 5125.076048104966)
+[2024-10-10 13:44:15,559][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:44:15,560][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:44:15,560][flwr][INFO] - 
+[2024-10-10 13:44:15,560][flwr][INFO] - [ROUND 37]
+[2024-10-10 13:44:15,560][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:44:15,560][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:46:38,515][flwr][INFO] - fit progress: (37, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 5268.034931379021)
+[2024-10-10 13:46:38,518][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:46:38,518][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:46:38,519][flwr][INFO] - 
+[2024-10-10 13:46:38,519][flwr][INFO] - [ROUND 38]
+[2024-10-10 13:46:38,519][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:46:38,519][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:49:01,400][flwr][INFO] - fit progress: (38, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 5410.920195253973)
+[2024-10-10 13:49:01,404][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:49:01,404][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:49:01,404][flwr][INFO] - 
+[2024-10-10 13:49:01,404][flwr][INFO] - [ROUND 39]
+[2024-10-10 13:49:01,404][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:49:01,404][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:51:24,508][flwr][INFO] - fit progress: (39, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 5554.027738448989)
+[2024-10-10 13:51:24,511][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:51:24,511][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:51:24,511][flwr][INFO] - 
+[2024-10-10 13:51:24,511][flwr][INFO] - [ROUND 40]
+[2024-10-10 13:51:24,512][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:51:24,512][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:53:48,141][flwr][INFO] - fit progress: (40, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 5697.66142364702)
+[2024-10-10 13:53:48,145][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:53:48,145][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:53:48,145][flwr][INFO] - 
+[2024-10-10 13:53:48,145][flwr][INFO] - [ROUND 41]
+[2024-10-10 13:53:48,145][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:53:48,145][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:56:11,117][flwr][INFO] - fit progress: (41, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 5840.636930858018)
+[2024-10-10 13:56:11,121][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:56:11,121][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:56:11,122][flwr][INFO] - 
+[2024-10-10 13:56:11,122][flwr][INFO] - [ROUND 42]
+[2024-10-10 13:56:11,122][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:56:11,122][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 13:58:36,135][flwr][INFO] - fit progress: (42, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 5985.65459213499)
+[2024-10-10 13:58:36,138][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:58:36,138][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 13:58:36,138][flwr][INFO] - 
+[2024-10-10 13:58:36,138][flwr][INFO] - [ROUND 43]
+[2024-10-10 13:58:36,138][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 13:58:36,139][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 14:01:05,862][flwr][INFO] - fit progress: (43, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 6135.381764471007)
+[2024-10-10 14:01:05,865][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 14:01:05,865][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 14:01:05,865][flwr][INFO] - 
+[2024-10-10 14:01:05,865][flwr][INFO] - [ROUND 44]
+[2024-10-10 14:01:05,865][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 14:01:05,866][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 14:03:33,394][flwr][INFO] - fit progress: (44, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 6282.913822386996)
+[2024-10-10 14:03:33,397][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 14:03:33,397][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 14:03:33,397][flwr][INFO] - 
+[2024-10-10 14:03:33,397][flwr][INFO] - [ROUND 45]
+[2024-10-10 14:03:33,398][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 14:03:33,398][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 14:05:57,089][flwr][INFO] - fit progress: (45, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 6426.609259902965)
+[2024-10-10 14:05:57,093][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 14:05:57,093][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 14:05:57,093][flwr][INFO] - 
+[2024-10-10 14:05:57,093][flwr][INFO] - [ROUND 46]
+[2024-10-10 14:05:57,093][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 14:05:57,093][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 14:08:21,634][flwr][INFO] - fit progress: (46, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 6571.153985548008)
+[2024-10-10 14:08:21,637][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 14:08:21,637][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 14:08:21,638][flwr][INFO] - 
+[2024-10-10 14:08:21,638][flwr][INFO] - [ROUND 47]
+[2024-10-10 14:08:21,638][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 14:08:21,638][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 14:10:47,326][flwr][INFO] - fit progress: (47, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 6716.846088888007)
+[2024-10-10 14:10:47,330][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 14:10:47,330][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 14:10:47,330][flwr][INFO] - 
+[2024-10-10 14:10:47,330][flwr][INFO] - [ROUND 48]
+[2024-10-10 14:10:47,330][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 14:10:47,330][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 14:13:12,783][flwr][INFO] - fit progress: (48, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 6862.302736037003)
+[2024-10-10 14:13:12,786][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 14:13:12,786][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 14:13:12,786][flwr][INFO] - 
+[2024-10-10 14:13:12,786][flwr][INFO] - [ROUND 49]
+[2024-10-10 14:13:12,787][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 14:13:12,787][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 14:15:35,844][flwr][INFO] - fit progress: (49, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 7005.363499542989)
+[2024-10-10 14:15:35,847][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 14:15:35,847][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 14:15:35,847][flwr][INFO] - 
+[2024-10-10 14:15:35,847][flwr][INFO] - [ROUND 50]
+[2024-10-10 14:15:35,847][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 14:15:35,847][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-10-10 14:18:04,614][flwr][INFO] - fit progress: (50, 0.7641939730817927, OrderedDict([('ind_iou_0', 0.004081982647692972), ('ind_dice_liver_0', tensor(0.1480, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0081, dtype=torch.float64)), ('ind_iou_1', 0.004204864624685007), ('ind_dice_liver_1', tensor(0.1474, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0093, dtype=torch.float64)), ('all_iou', 0.004198468968934947), ('all_dice_liver', tensor(0.1475, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0092, dtype=torch.float64))]), 7154.133663151006)
+[2024-10-10 14:18:04,617][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-10-10 14:18:04,617][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-10-10 14:18:04,617][flwr][INFO] - 
+[2024-10-10 14:18:04,617][flwr][INFO] - [SUMMARY]
+[2024-10-10 14:18:04,617][flwr][INFO] - Run finished 50 round(s) in 7154.14s
+[2024-10-10 14:18:04,763][flwr][INFO] - 	History (loss, centralized):
+[2024-10-10 14:18:04,763][flwr][INFO] - 		round 0: 0.7641939730817927
+[2024-10-10 14:18:04,763][flwr][INFO] - 		round 1: 0.7641939730817927
+[2024-10-10 14:18:04,763][flwr][INFO] - 		round 2: 0.7641939730817927
+[2024-10-10 14:18:04,763][flwr][INFO] - 		round 3: 0.7641939730817927
+[2024-10-10 14:18:04,763][flwr][INFO] - 		round 4: 0.7641939730817927
+[2024-10-10 14:18:04,764][flwr][INFO] - 		round 5: 0.7641939730817927
+[2024-10-10 14:18:04,764][flwr][INFO] - 		round 6: 0.7641939730817927
+[2024-10-10 14:18:04,764][flwr][INFO] - 		round 7: 0.7641939730817927
+[2024-10-10 14:18:04,764][flwr][INFO] - 		round 8: 0.7641939730817927
+[2024-10-10 14:18:04,764][flwr][INFO] - 		round 9: 0.7641939730817927
+[2024-10-10 14:18:04,764][flwr][INFO] - 		round 10: 0.7641939730817927
+[2024-10-10 14:18:04,764][flwr][INFO] - 		round 11: 0.7641939730817927
+[2024-10-10 14:18:04,764][flwr][INFO] - 		round 12: 0.7641939730817927
+[2024-10-10 14:18:04,764][flwr][INFO] - 		round 13: 0.7641939730817927
+[2024-10-10 14:18:04,764][flwr][INFO] - 		round 14: 0.7641939730817927
+[2024-10-10 14:18:04,764][flwr][INFO] - 		round 15: 0.7641939730817927
+[2024-10-10 14:18:04,764][flwr][INFO] - 		round 16: 0.7641939730817927
+[2024-10-10 14:18:04,764][flwr][INFO] - 		round 17: 0.7641939730817927
+[2024-10-10 14:18:04,764][flwr][INFO] - 		round 18: 0.7641939730817927
+[2024-10-10 14:18:04,764][flwr][INFO] - 		round 19: 0.7641939730817927
+[2024-10-10 14:18:04,764][flwr][INFO] - 		round 20: 0.7641939730817927
+[2024-10-10 14:18:04,764][flwr][INFO] - 		round 21: 0.7641939730817927
+[2024-10-10 14:18:04,764][flwr][INFO] - 		round 22: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 23: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 24: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 25: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 26: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 27: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 28: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 29: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 30: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 31: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 32: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 33: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 34: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 35: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 36: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 37: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 38: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 39: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 40: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 41: 0.7641939730817927
+[2024-10-10 14:18:04,765][flwr][INFO] - 		round 42: 0.7641939730817927
+[2024-10-10 14:18:04,766][flwr][INFO] - 		round 43: 0.7641939730817927
+[2024-10-10 14:18:04,766][flwr][INFO] - 		round 44: 0.7641939730817927
+[2024-10-10 14:18:04,766][flwr][INFO] - 		round 45: 0.7641939730817927
+[2024-10-10 14:18:04,766][flwr][INFO] - 		round 46: 0.7641939730817927
+[2024-10-10 14:18:04,766][flwr][INFO] - 		round 47: 0.7641939730817927
+[2024-10-10 14:18:04,766][flwr][INFO] - 		round 48: 0.7641939730817927
+[2024-10-10 14:18:04,766][flwr][INFO] - 		round 49: 0.7641939730817927
+[2024-10-10 14:18:04,766][flwr][INFO] - 		round 50: 0.7641939730817927
+[2024-10-10 14:18:04,766][flwr][INFO] - 	History (metrics, centralized):
+[2024-10-10 14:18:04,766][flwr][INFO] - 	{'all_dice_liver': [(0, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,766][flwr][INFO] - 	                    (1, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,766][flwr][INFO] - 	                    (2, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,766][flwr][INFO] - 	                    (3, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,766][flwr][INFO] - 	                    (4, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,766][flwr][INFO] - 	                    (5, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,766][flwr][INFO] - 	                    (6, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,766][flwr][INFO] - 	                    (7, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,766][flwr][INFO] - 	                    (8, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,766][flwr][INFO] - 	                    (9, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (10, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (11, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (12, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (13, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (14, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (15, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (16, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (17, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (18, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (19, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (20, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (21, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (22, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (23, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (24, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (25, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (26, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (27, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (28, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,767][flwr][INFO] - 	                    (29, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (30, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (31, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (32, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (33, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (34, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (35, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (36, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (37, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (38, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (39, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (40, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (41, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (42, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (43, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (44, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (45, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (46, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (47, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,768][flwr][INFO] - 	                    (48, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                    (49, tensor(0.1475, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                    (50, tensor(0.1475, dtype=torch.float64))],
+[2024-10-10 14:18:04,769][flwr][INFO] - 	 'all_dice_tumour': [(0, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                     (1, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                     (2, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                     (3, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                     (4, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                     (5, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                     (6, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                     (7, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                     (8, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                     (9, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                     (10, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                     (11, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                     (12, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                     (13, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                     (14, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                     (15, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                     (16, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,769][flwr][INFO] - 	                     (17, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (18, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (19, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (20, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (21, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (22, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (23, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (24, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (25, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (26, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (27, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (28, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (29, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (30, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (31, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (32, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (33, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (34, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (35, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (36, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,770][flwr][INFO] - 	                     (37, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	                     (38, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	                     (39, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	                     (40, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	                     (41, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	                     (42, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	                     (43, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	                     (44, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	                     (45, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	                     (46, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	                     (47, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	                     (48, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	                     (49, tensor(0.0092, dtype=torch.float64)),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	                     (50, tensor(0.0092, dtype=torch.float64))],
+[2024-10-10 14:18:04,771][flwr][INFO] - 	 'all_iou': [(0, 0.004198468968934947),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	             (1, 0.004198468968934947),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	             (2, 0.004198468968934947),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	             (3, 0.004198468968934947),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	             (4, 0.004198468968934947),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	             (5, 0.004198468968934947),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	             (6, 0.004198468968934947),
+[2024-10-10 14:18:04,771][flwr][INFO] - 	             (7, 0.004198468968934947),
+[2024-10-10 14:18:04,772][flwr][INFO] - 	             (8, 0.004198468968934947),
+[2024-10-10 14:18:04,772][flwr][INFO] - 	             (9, 0.004198468968934947),
+[2024-10-10 14:18:04,772][flwr][INFO] - 	             (10, 0.004198468968934947),
+[2024-10-10 14:18:04,772][flwr][INFO] - 	             (11, 0.004198468968934947),
+[2024-10-10 14:18:04,772][flwr][INFO] - 	             (12, 0.004198468968934947),
+[2024-10-10 14:18:04,772][flwr][INFO] - 	             (13, 0.004198468968934947),
+[2024-10-10 14:18:04,772][flwr][INFO] - 	             (14, 0.004198468968934947),
+[2024-10-10 14:18:04,772][flwr][INFO] - 	             (15, 0.004198468968934947),
+[2024-10-10 14:18:04,772][flwr][INFO] - 	             (16, 0.004198468968934947),
+[2024-10-10 14:18:04,772][flwr][INFO] - 	             (17, 0.004198468968934947),
+[2024-10-10 14:18:04,772][flwr][INFO] - 	             (18, 0.004198468968934947),
+[2024-10-10 14:18:04,772][flwr][INFO] - 	             (19, 0.004198468968934947),
+[2024-10-10 14:18:04,772][flwr][INFO] - 	             (20, 0.004198468968934947),
+[2024-10-10 14:18:04,772][flwr][INFO] - 	             (21, 0.004198468968934947),
+[2024-10-10 14:18:04,772][flwr][INFO] - 	             (22, 0.004198468968934947),
+[2024-10-10 14:18:04,772][flwr][INFO] - 	             (23, 0.004198468968934947),
+[2024-10-10 14:18:04,772][flwr][INFO] - 	             (24, 0.004198468968934947),
+[2024-10-10 14:18:04,773][flwr][INFO] - 	             (25, 0.004198468968934947),
+[2024-10-10 14:18:04,773][flwr][INFO] - 	             (26, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (27, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (28, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (29, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (30, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (31, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (32, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (33, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (34, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (35, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (36, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (37, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (38, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (39, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (40, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (41, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (42, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (43, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (44, 0.004198468968934947),
+[2024-10-10 14:18:04,774][flwr][INFO] - 	             (45, 0.004198468968934947),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	             (46, 0.004198468968934947),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	             (47, 0.004198468968934947),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	             (48, 0.004198468968934947),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	             (49, 0.004198468968934947),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	             (50, 0.004198468968934947)],
+[2024-10-10 14:18:04,775][flwr][INFO] - 	 'ind_dice_liver_0': [(0, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	                      (1, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	                      (2, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	                      (3, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	                      (4, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	                      (5, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	                      (6, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	                      (7, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	                      (8, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	                      (9, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	                      (10, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	                      (11, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	                      (12, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	                      (13, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,775][flwr][INFO] - 	                      (14, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (15, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (16, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (17, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (18, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (19, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (20, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (21, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (22, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (23, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (24, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (25, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (26, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (27, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (28, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (29, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (30, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (31, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (32, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,776][flwr][INFO] - 	                      (33, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (34, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (35, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (36, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (37, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (38, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (39, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (40, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (41, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (42, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (43, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (44, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (45, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (46, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (47, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (48, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (49, tensor(0.1480, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (50, tensor(0.1480, dtype=torch.float64))],
+[2024-10-10 14:18:04,777][flwr][INFO] - 	 'ind_dice_liver_1': [(0, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (1, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,777][flwr][INFO] - 	                      (2, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (3, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (4, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (5, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (6, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (7, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (8, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (9, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (10, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (11, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (12, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (13, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (14, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (15, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (16, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (17, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (18, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (19, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (20, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (21, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (22, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,778][flwr][INFO] - 	                      (23, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (24, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (25, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (26, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (27, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (28, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (29, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (30, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (31, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (32, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (33, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (34, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (35, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (36, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (37, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (38, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (39, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (40, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (41, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (42, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (43, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,779][flwr][INFO] - 	                      (44, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                      (45, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                      (46, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                      (47, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                      (48, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                      (49, tensor(0.1474, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                      (50, tensor(0.1474, dtype=torch.float64))],
+[2024-10-10 14:18:04,780][flwr][INFO] - 	 'ind_dice_tumour_0': [(0, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                       (1, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                       (2, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                       (3, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                       (4, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                       (5, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                       (6, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                       (7, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                       (8, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                       (9, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                       (10, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                       (11, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                       (12, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,780][flwr][INFO] - 	                       (13, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (14, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (15, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (16, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (17, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (18, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (19, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (20, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (21, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (22, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (23, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (24, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (25, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (26, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (27, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (28, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (29, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (30, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (31, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,781][flwr][INFO] - 	                       (32, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (33, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (34, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (35, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (36, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (37, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (38, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (39, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (40, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (41, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (42, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (43, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (44, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (45, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (46, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (47, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (48, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (49, tensor(0.0081, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (50, tensor(0.0081, dtype=torch.float64))],
+[2024-10-10 14:18:04,782][flwr][INFO] - 	 'ind_dice_tumour_1': [(0, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,782][flwr][INFO] - 	                       (1, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (2, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (3, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (4, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (5, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (6, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (7, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (8, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (9, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (10, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (11, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (12, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (13, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (14, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (15, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (16, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (17, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (18, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (19, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (20, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (21, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,783][flwr][INFO] - 	                       (22, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,784][flwr][INFO] - 	                       (23, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,784][flwr][INFO] - 	                       (24, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,784][flwr][INFO] - 	                       (25, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,784][flwr][INFO] - 	                       (26, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,784][flwr][INFO] - 	                       (27, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,784][flwr][INFO] - 	                       (28, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,784][flwr][INFO] - 	                       (29, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,784][flwr][INFO] - 	                       (30, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,784][flwr][INFO] - 	                       (31, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,784][flwr][INFO] - 	                       (32, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,784][flwr][INFO] - 	                       (33, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,784][flwr][INFO] - 	                       (34, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,784][flwr][INFO] - 	                       (35, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,784][flwr][INFO] - 	                       (36, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,784][flwr][INFO] - 	                       (37, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,784][flwr][INFO] - 	                       (38, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,784][flwr][INFO] - 	                       (39, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,784][flwr][INFO] - 	                       (40, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,785][flwr][INFO] - 	                       (41, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,785][flwr][INFO] - 	                       (42, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,785][flwr][INFO] - 	                       (43, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,785][flwr][INFO] - 	                       (44, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,785][flwr][INFO] - 	                       (45, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,785][flwr][INFO] - 	                       (46, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,785][flwr][INFO] - 	                       (47, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,785][flwr][INFO] - 	                       (48, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,785][flwr][INFO] - 	                       (49, tensor(0.0093, dtype=torch.float64)),
+[2024-10-10 14:18:04,785][flwr][INFO] - 	                       (50, tensor(0.0093, dtype=torch.float64))],
+[2024-10-10 14:18:04,785][flwr][INFO] - 	 'ind_iou_0': [(0, 0.004081982647692972),
+[2024-10-10 14:18:04,785][flwr][INFO] - 	               (1, 0.004081982647692972),
+[2024-10-10 14:18:04,785][flwr][INFO] - 	               (2, 0.004081982647692972),
+[2024-10-10 14:18:04,785][flwr][INFO] - 	               (3, 0.004081982647692972),
+[2024-10-10 14:18:04,785][flwr][INFO] - 	               (4, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (5, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (6, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (7, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (8, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (9, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (10, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (11, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (12, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (13, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (14, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (15, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (16, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (17, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (18, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (19, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (20, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (21, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (22, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (23, 0.004081982647692972),
+[2024-10-10 14:18:04,786][flwr][INFO] - 	               (24, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (25, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (26, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (27, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (28, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (29, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (30, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (31, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (32, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (33, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (34, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (35, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (36, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (37, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (38, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (39, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (40, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (41, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (42, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (43, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (44, 0.004081982647692972),
+[2024-10-10 14:18:04,787][flwr][INFO] - 	               (45, 0.004081982647692972),
+[2024-10-10 14:18:04,788][flwr][INFO] - 	               (46, 0.004081982647692972),
+[2024-10-10 14:18:04,788][flwr][INFO] - 	               (47, 0.004081982647692972),
+[2024-10-10 14:18:04,788][flwr][INFO] - 	               (48, 0.004081982647692972),
+[2024-10-10 14:18:04,788][flwr][INFO] - 	               (49, 0.004081982647692972),
+[2024-10-10 14:18:04,788][flwr][INFO] - 	               (50, 0.004081982647692972)],
+[2024-10-10 14:18:04,788][flwr][INFO] - 	 'ind_iou_1': [(0, 0.004204864624685007),
+[2024-10-10 14:18:04,788][flwr][INFO] - 	               (1, 0.004204864624685007),
+[2024-10-10 14:18:04,788][flwr][INFO] - 	               (2, 0.004204864624685007),
+[2024-10-10 14:18:04,788][flwr][INFO] - 	               (3, 0.004204864624685007),
+[2024-10-10 14:18:04,788][flwr][INFO] - 	               (4, 0.004204864624685007),
+[2024-10-10 14:18:04,788][flwr][INFO] - 	               (5, 0.004204864624685007),
+[2024-10-10 14:18:04,788][flwr][INFO] - 	               (6, 0.004204864624685007),
+[2024-10-10 14:18:04,788][flwr][INFO] - 	               (7, 0.004204864624685007),
+[2024-10-10 14:18:04,788][flwr][INFO] - 	               (8, 0.004204864624685007),
+[2024-10-10 14:18:04,788][flwr][INFO] - 	               (9, 0.004204864624685007),
+[2024-10-10 14:18:04,788][flwr][INFO] - 	               (10, 0.004204864624685007),
+[2024-10-10 14:18:04,788][flwr][INFO] - 	               (11, 0.004204864624685007),
+[2024-10-10 14:18:04,788][flwr][INFO] - 	               (12, 0.004204864624685007),
+[2024-10-10 14:18:04,788][flwr][INFO] - 	               (13, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (14, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (15, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (16, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (17, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (18, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (19, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (20, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (21, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (22, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (23, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (24, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (25, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (26, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (27, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (28, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (29, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (30, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (31, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (32, 0.004204864624685007),
+[2024-10-10 14:18:04,789][flwr][INFO] - 	               (33, 0.004204864624685007),
+[2024-10-10 14:18:04,790][flwr][INFO] - 	               (34, 0.004204864624685007),
+[2024-10-10 14:18:04,790][flwr][INFO] - 	               (35, 0.004204864624685007),
+[2024-10-10 14:18:04,790][flwr][INFO] - 	               (36, 0.004204864624685007),
+[2024-10-10 14:18:04,790][flwr][INFO] - 	               (37, 0.004204864624685007),
+[2024-10-10 14:18:04,790][flwr][INFO] - 	               (38, 0.004204864624685007),
+[2024-10-10 14:18:04,790][flwr][INFO] - 	               (39, 0.004204864624685007),
+[2024-10-10 14:18:04,790][flwr][INFO] - 	               (40, 0.004204864624685007),
+[2024-10-10 14:18:04,790][flwr][INFO] - 	               (41, 0.004204864624685007),
+[2024-10-10 14:18:04,790][flwr][INFO] - 	               (42, 0.004204864624685007),
+[2024-10-10 14:18:04,790][flwr][INFO] - 	               (43, 0.004204864624685007),
+[2024-10-10 14:18:04,790][flwr][INFO] - 	               (44, 0.004204864624685007),
+[2024-10-10 14:18:04,790][flwr][INFO] - 	               (45, 0.004204864624685007),
+[2024-10-10 14:18:04,790][flwr][INFO] - 	               (46, 0.004204864624685007),
+[2024-10-10 14:18:04,790][flwr][INFO] - 	               (47, 0.004204864624685007),
+[2024-10-10 14:18:04,790][flwr][INFO] - 	               (48, 0.004204864624685007),
+[2024-10-10 14:18:04,790][flwr][INFO] - 	               (49, 0.004204864624685007),
+[2024-10-10 14:18:04,790][flwr][INFO] - 	               (50, 0.004204864624685007)]}
+[2024-10-10 14:18:04,790][flwr][INFO] - 

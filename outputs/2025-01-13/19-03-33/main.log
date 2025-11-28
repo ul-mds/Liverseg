@@ -1,0 +1,1734 @@
+[2025-01-13 19:03:34,371][flwr][INFO] - Starting Flower simulation, config: num_rounds=40, no round_timeout
+[2025-01-13 19:03:56,904][flwr][INFO] - Flower VCE: Ray initialized with resources: {'GPU': 3.0, 'node:__internal_head__': 1.0, 'node:172.18.62.11': 1.0, 'object_store_memory': 200000000000.0, 'accelerator_type:A30': 1.0, 'CPU': 128.0, 'memory': 847726496768.0}
+[2025-01-13 19:03:56,904][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2025-01-13 19:03:56,904][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 1.0}
+[2025-01-13 19:03:56,917][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 3 actors
+[2025-01-13 19:03:56,918][flwr][INFO] - [INIT]
+[2025-01-13 19:03:56,918][flwr][INFO] - Requesting initial parameters from one random client
+[2025-01-13 19:04:00,636][flwr][INFO] - Received initial parameters from one random client
+[2025-01-13 19:04:00,636][flwr][INFO] - Evaluating initial global parameters
+[2025-01-13 19:06:47,934][flwr][INFO] - initial parameters (loss, other metrics): 0.7547158153955775, OrderedDict([('ind_iou_0', 0.06525892348446104), ('ind_dice_liver_0', tensor(0.1546, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0080, dtype=torch.float64)), ('ind_iou_1', 0.06402677987081885), ('ind_dice_liver_1', tensor(0.1529, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0070, dtype=torch.float64)), ('all_iou', 0.06514541405764389), ('all_dice_liver', tensor(0.1544, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0079, dtype=torch.float64))])
+[2025-01-13 19:06:48,105][flwr][INFO] - 
+[2025-01-13 19:06:48,105][flwr][INFO] - [ROUND 1]
+[2025-01-13 19:06:48,105][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2025-01-13 19:06:48,369][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+
+[2025-01-13 19:06:48,369][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+[2025-01-13 19:06:50,583][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+
+[2025-01-13 19:06:50,584][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+[2025-01-13 19:06:50,584][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2025-01-13 19:09:32,403][flwr][INFO] - fit progress: (1, 0.7547158153955775, OrderedDict([('ind_iou_0', 0.06525892348446104), ('ind_dice_liver_0', tensor(0.1546, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0080, dtype=torch.float64)), ('ind_iou_1', 0.06402677987081885), ('ind_dice_liver_1', tensor(0.1529, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0070, dtype=torch.float64)), ('all_iou', 0.06514541405764389), ('all_dice_liver', tensor(0.1544, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0079, dtype=torch.float64))]), 164.29826113581657)
+[2025-01-13 19:09:32,408][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2025-01-13 19:09:32,652][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+
+[2025-01-13 19:09:32,652][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+[2025-01-13 19:09:32,654][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+
+[2025-01-13 19:09:32,654][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+[2025-01-13 19:09:32,655][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2025-01-13 19:09:32,655][flwr][INFO] - 
+[2025-01-13 19:09:32,655][flwr][INFO] - [ROUND 2]
+[2025-01-13 19:09:32,655][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2025-01-13 19:09:32,809][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+
+[2025-01-13 19:09:32,810][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+[2025-01-13 19:09:32,873][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+
+[2025-01-13 19:09:32,874][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+[2025-01-13 19:09:32,875][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2025-01-13 19:12:12,448][flwr][INFO] - fit progress: (2, 0.7547158153955775, OrderedDict([('ind_iou_0', 0.06525892348446104), ('ind_dice_liver_0', tensor(0.1546, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0080, dtype=torch.float64)), ('ind_iou_1', 0.06402677987081885), ('ind_dice_liver_1', tensor(0.1529, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0070, dtype=torch.float64)), ('all_iou', 0.06514541405764389), ('all_dice_liver', tensor(0.1544, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0079, dtype=torch.float64))]), 324.3434358853847)
+[2025-01-13 19:12:12,452][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2025-01-13 19:12:12,562][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+
+[2025-01-13 19:12:12,562][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+[2025-01-13 19:12:12,662][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+
+[2025-01-13 19:12:12,663][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+[2025-01-13 19:12:12,665][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2025-01-13 19:12:12,665][flwr][INFO] - 
+[2025-01-13 19:12:12,665][flwr][INFO] - [ROUND 3]
+[2025-01-13 19:12:12,665][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2025-01-13 19:12:12,775][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+
+[2025-01-13 19:12:12,776][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+[2025-01-13 19:12:12,803][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+
+[2025-01-13 19:12:12,804][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+[2025-01-13 19:12:12,805][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2025-01-13 19:14:52,916][flwr][INFO] - fit progress: (3, 0.7547158153955775, OrderedDict([('ind_iou_0', 0.06525892348446104), ('ind_dice_liver_0', tensor(0.1546, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0080, dtype=torch.float64)), ('ind_iou_1', 0.06402677987081885), ('ind_dice_liver_1', tensor(0.1529, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0070, dtype=torch.float64)), ('all_iou', 0.06514541405764389), ('all_dice_liver', tensor(0.1544, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0079, dtype=torch.float64))]), 484.8110242933035)
+[2025-01-13 19:14:52,919][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2025-01-13 19:14:53,052][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+
+[2025-01-13 19:14:53,052][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+[2025-01-13 19:14:53,147][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+
+[2025-01-13 19:14:53,147][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+[2025-01-13 19:14:53,147][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2025-01-13 19:14:53,148][flwr][INFO] - 
+[2025-01-13 19:14:53,148][flwr][INFO] - [ROUND 4]
+[2025-01-13 19:14:53,148][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2025-01-13 19:14:53,274][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+
+[2025-01-13 19:14:53,274][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+[2025-01-13 19:14:53,307][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+
+[2025-01-13 19:14:53,308][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+[2025-01-13 19:14:53,309][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2025-01-13 19:17:37,645][flwr][INFO] - fit progress: (4, 0.7547158153955775, OrderedDict([('ind_iou_0', 0.06525892348446104), ('ind_dice_liver_0', tensor(0.1546, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0080, dtype=torch.float64)), ('ind_iou_1', 0.06402677987081885), ('ind_dice_liver_1', tensor(0.1529, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0070, dtype=torch.float64)), ('all_iou', 0.06514541405764389), ('all_dice_liver', tensor(0.1544, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0079, dtype=torch.float64))]), 649.5395471993834)
+[2025-01-13 19:17:37,648][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2025-01-13 19:17:37,781][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+
+[2025-01-13 19:17:37,782][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+[2025-01-13 19:17:37,793][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+
+[2025-01-13 19:17:37,793][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 74, in evaluate
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+[2025-01-13 19:17:37,794][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2025-01-13 19:17:37,794][flwr][INFO] - 
+[2025-01-13 19:17:37,794][flwr][INFO] - [ROUND 5]
+[2025-01-13 19:17:37,795][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2025-01-13 19:17:37,924][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+
+[2025-01-13 19:17:37,925][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285916, ip=172.18.62.11, actor_id=00571fb6efa6a4ae63cf0f3101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x1546f94e3460>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+[2025-01-13 19:17:37,933][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+
+[2025-01-13 19:17:37,934][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/message_handler/message_handler.py", line 130, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/client/numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 44, in fit
+    self.set_parameters(parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/client.py", line 36, in set_parameters
+    self.model.load_state_dict(state_dict,strict =True)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2027, in load_state_dict
+    load(self, state_dict)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2015, in load
+    load(child, child_state_dict, child_prefix)
+  [Previous line repeated 1 more time]
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 2009, in load
+    module._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 110, in _load_from_state_dict
+    super()._load_from_state_dict(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1932, in _load_from_state_dict
+    input_param = input_param[0]
+IndexError: index 0 is out of bounds for dimension 0 with size 0
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=2285917, ip=172.18.62.11, actor_id=710c144cf54c98893908686b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x150bf4a074f0>)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: index 0 is out of bounds for dimension 0 with size 0
+[2025-01-13 19:17:37,935][flwr][INFO] - aggregate_fit: received 0 results and 2 failures

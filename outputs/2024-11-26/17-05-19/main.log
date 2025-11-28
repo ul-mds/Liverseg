@@ -1,0 +1,35 @@
+[2024-11-26 17:05:19,978][flwr][INFO] - Starting Flower simulation, config: num_rounds=40, no round_timeout
+[2024-11-26 17:05:46,878][flwr][INFO] - Flower VCE: Ray initialized with resources: {'accelerator_type:A30': 1.0, 'CPU': 128.0, 'memory': 850441329664.0, 'node:172.18.62.8': 1.0, 'GPU': 3.0, 'object_store_memory': 200000000000.0, 'node:__internal_head__': 1.0}
+[2024-11-26 17:05:46,878][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-11-26 17:05:46,878][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 1.0}
+[2024-11-26 17:05:47,250][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 3 actors
+[2024-11-26 17:05:47,250][flwr][INFO] - [INIT]
+[2024-11-26 17:05:47,250][flwr][INFO] - Requesting initial parameters from one random client
+[2024-11-26 17:05:52,141][flwr][INFO] - Received initial parameters from one random client
+[2024-11-26 17:05:52,141][flwr][INFO] - Evaluating initial global parameters
+[2024-11-26 17:05:53,062][flwr][ERROR] - name 'AverageMeter' is not defined
+[2024-11-26 17:05:53,065][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/simulation/app.py", line 323, in start_simulation
+    hist = run_fl(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/server/server.py", line 490, in run_fl
+    hist, elapsed_time = server.fit(
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/server/server.py", line 95, in fit
+    res = self.strategy.evaluate(0, parameters=self.parameters)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/envs/.env2/lib/python3.9/site-packages/flwr/server/strategy/fedavg.py", line 167, in evaluate
+    eval_res = self.evaluate_fn(server_round, parameters_ndarrays, {})
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/server.py", line 32, in evaluate_fn
+    loss, log = test(model, testloader, criterion, device=device)
+  File "/home/sc.uni-leipzig.de/zc19tube/liverseg_v2/training_evaluation.py", line 108, in test
+    test_individual_losses.append(AverageMeter())
+NameError: name 'AverageMeter' is not defined
+
+[2024-11-26 17:05:53,065][flwr][ERROR] - Your simulation crashed :(. This could be because of several reasons. The most common are: 
+	 > Sometimes, issues in the simulation code itself can cause crashes. It's always a good idea to double-check your code for any potential bugs or inconsistencies that might be contributing to the problem. For example: 
+		 - You might be using a class attribute in your clients that hasn't been defined.
+		 - There could be an incorrect method call to a 3rd party library (e.g., PyTorch).
+		 - The return types of methods in your clients/strategies might be incorrect.
+	 > Your system couldn't fit a single VirtualClient: try lowering `client_resources`.
+	 > All the actors in your pool crashed. This could be because: 
+		 - You clients hit an out-of-memory (OOM) error and actors couldn't recover from it. Try launching your simulation with more generous `client_resources` setting (i.e. it seems {'num_cpus': 3, 'num_gpus': 1.0} is not enough for your run). Use fewer concurrent actors. 
+		 - You were running a multi-node simulation and all worker nodes disconnected. The head node might still be alive but cannot accommodate any actor with resources: {'num_cpus': 3, 'num_gpus': 1.0}.
+Take a look at the Flower simulation examples for guidance <https://flower.ai/docs/framework/how-to-run-simulations.html>.

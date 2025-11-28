@@ -1,0 +1,39 @@
+strategy:
+  _target_: flwr.server.strategy.FedAvg
+  fraction_fit: 0.0001
+  min_fit_clients: ${num_clients_per_round_fit}
+  fraction_evaluate: 0.0001
+  min_evaluate_clients: ${num_clients_per_round_eval}
+  min_available_clients: ${num_clients}
+  on_fit_config_fn:
+    _target_: server.get_on_fit_config
+    config: ${config_fit}
+model:
+  _target_: model.unet.UNet
+dataset:
+  input-channels: 3
+  image-ext: npy
+  mask-ext: npy
+  num_partitions: 1
+  batch_size: ${batch_size}
+  transformation: false
+  val_ratio: 0.1
+  test_ratio: 0.2
+  lits_data_path: /home/mds/Downloads/lits_full
+  ircad_data_path: /home/mds/Downloads/3Dircadb1/npy_files
+  sliver_data_path: /home/mds/Downloads/sliver07/npy_files
+num_rounds: 30
+num_clients: 1
+local_epochs: 2
+batch_size: 1
+num_classes: 2
+num_clients_per_round_fit: 2
+num_clients_per_round_eval: 2
+device: cpu
+config_fit:
+  lr: 3.0e-05
+  momentum: 0.9
+  weight_decay: 1.0e-05
+  nesterov: false
+  optimizer: Adam
+  loss: BCEWithLogitsLoss

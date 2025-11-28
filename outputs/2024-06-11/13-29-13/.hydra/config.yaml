@@ -1,0 +1,32 @@
+toy_model:
+  _target_: torchvision.models.mobilenetv2
+  num_classes: ${foo}
+foo: 123
+bar:
+  baz:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 99
+  bazz: 24
+  more:
+    bla: hello
+    blabla: ${foo}
+my_func:
+  _target_: toy.function_test
+  x: 123
+  'y': 321
+my_partial_func:
+  _target_: toy.function_test
+  _partial_: true
+  x: 123
+my_object:
+  _target_: toy.MyClass
+  x: 32
+my_complex_object:
+  _target_: toy.MyComplexClass
+  _recursive_: false
+  my_object:
+    _target_: toy.MyClass
+    x: ${bar.bazz}

@@ -1,0 +1,92 @@
+[2024-08-07 09:13:35,325][flwr][WARNING] - 
+Setting `min_available_clients` lower than `min_fit_clients` or
+`min_evaluate_clients` can cause the server to fail when there are too few clients
+connected to the server. `min_available_clients` must be set to a value larger
+than or equal to the values of `min_fit_clients` and `min_evaluate_clients`.
+
+[2024-08-07 09:13:35,326][flwr][INFO] - Starting Flower simulation, config: num_rounds=6, no round_timeout
+[2024-08-07 09:13:38,055][flwr][INFO] - Flower VCE: Ray initialized with resources: {'node:__internal_head__': 1.0, 'CPU': 8.0, 'accelerator_type:T4': 1.0, 'GPU': 1.0, 'object_store_memory': 35146014720.0, 'node:10.50.9.88': 1.0, 'memory': 72007367680.0}
+[2024-08-07 09:13:38,056][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-08-07 09:13:38,056][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 1.0}
+[2024-08-07 09:13:38,069][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 1 actors
+[2024-08-07 09:13:38,069][flwr][INFO] - [INIT]
+[2024-08-07 09:13:38,069][flwr][INFO] - Requesting initial parameters from one random client
+[2024-08-07 09:13:41,256][flwr][INFO] - Received initial parameters from one random client
+[2024-08-07 09:13:41,256][flwr][INFO] - Evaluating initial global parameters
+[2024-08-07 09:13:46,534][flwr][INFO] - initial parameters (loss, other metrics): 0.6442928612232208, OrderedDict([('all_iou', 1.1699899857709967e-09), ('all_dice_liver', tensor(0.1192, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0005, dtype=torch.float64))])
+[2024-08-07 09:13:46,537][flwr][INFO] - 
+[2024-08-07 09:13:46,537][flwr][INFO] - [ROUND 1]
+[2024-08-07 09:13:46,537][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-08-07 09:13:46,537][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-08-07 09:13:47,587][flwr][INFO] - fit progress: (1, 0.6442928661902746, OrderedDict([('all_iou', 5.067354933918517e-10), ('all_dice_liver', tensor(0.1240, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0005, dtype=torch.float64))]), 1.0499972309917212)
+[2024-08-07 09:13:47,589][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-08-07 09:13:47,589][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-08-07 09:13:47,589][flwr][INFO] - 
+[2024-08-07 09:13:47,589][flwr][INFO] - [ROUND 2]
+[2024-08-07 09:13:47,589][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-08-07 09:13:47,590][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-08-07 09:13:48,689][flwr][INFO] - fit progress: (2, 0.6442928562561671, OrderedDict([('all_iou', 4.852704238970888e-10), ('all_dice_liver', tensor(0.1226, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0005, dtype=torch.float64))]), 2.152219277340919)
+[2024-08-07 09:13:48,691][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-08-07 09:13:48,691][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-08-07 09:13:48,691][flwr][INFO] - 
+[2024-08-07 09:13:48,691][flwr][INFO] - [ROUND 3]
+[2024-08-07 09:13:48,691][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-08-07 09:13:48,691][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-08-07 09:13:49,754][flwr][INFO] - fit progress: (3, 0.6442928512891134, OrderedDict([('all_iou', 1.6148295568981354e-09), ('all_dice_liver', tensor(0.1183, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0005, dtype=torch.float64))]), 3.2179109412245452)
+[2024-08-07 09:13:49,757][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-08-07 09:13:49,757][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-08-07 09:13:49,757][flwr][INFO] - 
+[2024-08-07 09:13:49,757][flwr][INFO] - [ROUND 4]
+[2024-08-07 09:13:49,757][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-08-07 09:13:49,757][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-08-07 09:13:50,826][flwr][INFO] - fit progress: (4, 0.6442928512891134, OrderedDict([('all_iou', 1.1850998831703497e-09), ('all_dice_liver', tensor(0.1208, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0005, dtype=torch.float64))]), 4.289672255050391)
+[2024-08-07 09:13:50,828][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-08-07 09:13:50,829][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-08-07 09:13:50,829][flwr][INFO] - 
+[2024-08-07 09:13:50,829][flwr][INFO] - [ROUND 5]
+[2024-08-07 09:13:50,829][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-08-07 09:13:50,829][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-08-07 09:13:51,868][flwr][INFO] - fit progress: (5, 0.6442928711573283, OrderedDict([('all_iou', 7.563009088465611e-10), ('all_dice_liver', tensor(0.1210, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0005, dtype=torch.float64))]), 5.33114986307919)
+[2024-08-07 09:13:51,870][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-08-07 09:13:51,870][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-08-07 09:13:51,870][flwr][INFO] - 
+[2024-08-07 09:13:51,870][flwr][INFO] - [ROUND 6]
+[2024-08-07 09:13:51,870][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-08-07 09:13:51,870][flwr][INFO] - configure_fit: no clients selected, cancel
+[2024-08-07 09:13:52,927][flwr][INFO] - fit progress: (6, 0.6442928612232208, OrderedDict([('all_iou', 5.627537999530232e-10), ('all_dice_liver', tensor(0.1224, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0005, dtype=torch.float64))]), 6.390515340026468)
+[2024-08-07 09:13:52,930][flwr][INFO] - Sampling failed: number of available clients (1) is less than number of requested clients (2).
+[2024-08-07 09:13:52,930][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2024-08-07 09:13:52,930][flwr][INFO] - 
+[2024-08-07 09:13:52,930][flwr][INFO] - [SUMMARY]
+[2024-08-07 09:13:52,930][flwr][INFO] - Run finished 6 round(s) in 6.39s
+[2024-08-07 09:13:52,940][flwr][INFO] - 	History (loss, centralized):
+[2024-08-07 09:13:52,940][flwr][INFO] - 		round 0: 0.6442928612232208
+[2024-08-07 09:13:52,940][flwr][INFO] - 		round 1: 0.6442928661902746
+[2024-08-07 09:13:52,940][flwr][INFO] - 		round 2: 0.6442928562561671
+[2024-08-07 09:13:52,940][flwr][INFO] - 		round 3: 0.6442928512891134
+[2024-08-07 09:13:52,940][flwr][INFO] - 		round 4: 0.6442928512891134
+[2024-08-07 09:13:52,940][flwr][INFO] - 		round 5: 0.6442928711573283
+[2024-08-07 09:13:52,940][flwr][INFO] - 		round 6: 0.6442928612232208
+[2024-08-07 09:13:52,940][flwr][INFO] - 	History (metrics, centralized):
+[2024-08-07 09:13:52,941][flwr][INFO] - 	{'all_dice_liver': [(0, tensor(0.1192, dtype=torch.float64)),
+[2024-08-07 09:13:52,941][flwr][INFO] - 	                    (1, tensor(0.1240, dtype=torch.float64)),
+[2024-08-07 09:13:52,941][flwr][INFO] - 	                    (2, tensor(0.1226, dtype=torch.float64)),
+[2024-08-07 09:13:52,941][flwr][INFO] - 	                    (3, tensor(0.1183, dtype=torch.float64)),
+[2024-08-07 09:13:52,941][flwr][INFO] - 	                    (4, tensor(0.1208, dtype=torch.float64)),
+[2024-08-07 09:13:52,941][flwr][INFO] - 	                    (5, tensor(0.1210, dtype=torch.float64)),
+[2024-08-07 09:13:52,941][flwr][INFO] - 	                    (6, tensor(0.1224, dtype=torch.float64))],
+[2024-08-07 09:13:52,941][flwr][INFO] - 	 'all_dice_tumour': [(0, tensor(0.0005, dtype=torch.float64)),
+[2024-08-07 09:13:52,941][flwr][INFO] - 	                     (1, tensor(0.0005, dtype=torch.float64)),
+[2024-08-07 09:13:52,941][flwr][INFO] - 	                     (2, tensor(0.0005, dtype=torch.float64)),
+[2024-08-07 09:13:52,941][flwr][INFO] - 	                     (3, tensor(0.0005, dtype=torch.float64)),
+[2024-08-07 09:13:52,941][flwr][INFO] - 	                     (4, tensor(0.0005, dtype=torch.float64)),
+[2024-08-07 09:13:52,941][flwr][INFO] - 	                     (5, tensor(0.0005, dtype=torch.float64)),
+[2024-08-07 09:13:52,941][flwr][INFO] - 	                     (6, tensor(0.0005, dtype=torch.float64))],
+[2024-08-07 09:13:52,941][flwr][INFO] - 	 'all_iou': [(0, 1.1699899857709967e-09),
+[2024-08-07 09:13:52,941][flwr][INFO] - 	             (1, 5.067354933918517e-10),
+[2024-08-07 09:13:52,941][flwr][INFO] - 	             (2, 4.852704238970888e-10),
+[2024-08-07 09:13:52,941][flwr][INFO] - 	             (3, 1.6148295568981354e-09),
+[2024-08-07 09:13:52,942][flwr][INFO] - 	             (4, 1.1850998831703497e-09),
+[2024-08-07 09:13:52,942][flwr][INFO] - 	             (5, 7.563009088465611e-10),
+[2024-08-07 09:13:52,942][flwr][INFO] - 	             (6, 5.627537999530232e-10)]}
+[2024-08-07 09:13:52,942][flwr][INFO] - 

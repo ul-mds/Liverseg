@@ -1,0 +1,142 @@
+[2024-08-06 09:54:00,268][flwr][INFO] - Starting Flower simulation, config: num_rounds=15, no round_timeout
+[2024-08-06 09:54:04,109][flwr][INFO] - Flower VCE: Ray initialized with resources: {'GPU': 1.0, 'object_store_memory': 35225208422.0, 'node:10.50.9.88': 1.0, 'node:__internal_head__': 1.0, 'accelerator_type:T4': 1.0, 'CPU': 8.0, 'memory': 72192152986.0}
+[2024-08-06 09:54:04,109][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-08-06 09:54:04,109][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 3, 'num_gpus': 1.0}
+[2024-08-06 09:54:04,124][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 1 actors
+[2024-08-06 09:54:04,125][flwr][INFO] - [INIT]
+[2024-08-06 09:54:04,125][flwr][INFO] - Requesting initial parameters from one random client
+[2024-08-06 09:54:07,428][flwr][INFO] - Received initial parameters from one random client
+[2024-08-06 09:54:07,429][flwr][INFO] - Evaluating initial global parameters
+[2024-08-06 09:59:48,214][flwr][INFO] - initial parameters (loss, other metrics): 0.6870117092945041, OrderedDict([('ind_iou_0', 0.09069265450782832), ('ind_dice_liver_0', tensor(0.1491, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.0092, dtype=torch.float64)), ('ind_iou_1', 0.0914711608199637), ('ind_dice_liver_1', tensor(0.1507, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.0080, dtype=torch.float64)), ('all_iou', 0.09077133145862855), ('all_dice_liver', tensor(0.1495, dtype=torch.float64)), ('all_dice_tumour', tensor(0.0091, dtype=torch.float64))])
+[2024-08-06 09:59:48,219][flwr][INFO] - 
+[2024-08-06 09:59:48,219][flwr][INFO] - [ROUND 1]
+[2024-08-06 09:59:48,219][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-06 11:47:31,847][flwr][INFO] - aggregate_fit: received 2 results and 0 failures
+[2024-08-06 11:47:32,008][flwr][WARNING] - No fit_metrics_aggregation_fn provided
+[2024-08-06 11:53:11,015][flwr][INFO] - fit progress: (1, 0.00918396463763783, OrderedDict([('ind_iou_0', 0.9222863550860577), ('ind_dice_liver_0', tensor(0.9500, dtype=torch.float64)), ('ind_dice_tumour_0', tensor(0.3264, dtype=torch.float64)), ('ind_iou_1', 0.9056459016363062), ('ind_dice_liver_1', tensor(0.9436, dtype=torch.float64)), ('ind_dice_tumour_1', tensor(0.2206, dtype=torch.float64)), ('all_iou', 0.9199389851990502), ('all_dice_liver', tensor(0.9487, dtype=torch.float64)), ('all_dice_tumour', tensor(0.3194, dtype=torch.float64))]), 6802.795967123937)
+[2024-08-06 11:53:11,020][flwr][INFO] - configure_evaluate: strategy sampled 2 clients (out of 2)
+[2024-08-06 11:53:17,802][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=696585, ip=10.50.9.88, actor_id=375f0301fcf0c0085178e9c801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f7a581c46a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    return float(loss), len(self.valloader), log
+ValueError: too many values to unpack (expected 2)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=696585, ip=10.50.9.88, actor_id=375f0301fcf0c0085178e9c801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f7a581c46a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: too many values to unpack (expected 2)
+
+[2024-08-06 11:53:17,802][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=696585, ip=10.50.9.88, actor_id=375f0301fcf0c0085178e9c801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f7a581c46a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    return float(loss), len(self.valloader), log
+ValueError: too many values to unpack (expected 2)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=696585, ip=10.50.9.88, actor_id=375f0301fcf0c0085178e9c801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f7a581c46a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: too many values to unpack (expected 2)
+[2024-08-06 11:54:18,221][flwr][ERROR] - Traceback (most recent call last):
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 73, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 399, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 280, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=696585, ip=10.50.9.88, actor_id=375f0301fcf0c0085178e9c801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f7a581c46a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    return float(loss), len(self.valloader), log
+ValueError: too many values to unpack (expected 2)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=696585, ip=10.50.9.88, actor_id=375f0301fcf0c0085178e9c801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f7a581c46a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: too many values to unpack (expected 2)
+
+[2024-08-06 11:54:18,221][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=696585, ip=10.50.9.88, actor_id=375f0301fcf0c0085178e9c801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f7a581c46a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 98, in __call__
+    return self._call(message, context)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client_app.py", line 81, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 137, in handle_legacy_message_from_msgtype
+    evaluate_res = maybe_call_evaluate(
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/client.py", line 254, in maybe_call_evaluate
+    return client.evaluate(evaluate_ins)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 262, in _evaluate
+    results = self.numpy_client.evaluate(parameters, ins.config)  # type: ignore
+  File "/home/mmaia/fedliver_v2/client.py", line 76, in evaluate
+    return float(loss), len(self.valloader), log
+ValueError: too many values to unpack (expected 2)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=696585, ip=10.50.9.88, actor_id=375f0301fcf0c0085178e9c801000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f7a581c46a0>)
+  File "/home/mmaia/my_envs/liver_torch/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: too many values to unpack (expected 2)
+[2024-08-06 11:54:18,222][flwr][INFO] - aggregate_evaluate: received 0 results and 2 failures
+[2024-08-06 11:54:18,222][flwr][INFO] - 
+[2024-08-06 11:54:18,222][flwr][INFO] - [ROUND 2]
+[2024-08-06 11:54:18,222][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 2)
+[2024-08-06 13:41:49,604][flwr][INFO] - aggregate_fit: received 2 results and 0 failures
