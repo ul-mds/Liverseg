@@ -1,12 +1,12 @@
-# FedSeg: Federated Learning for Liver and Tumor Segmentation
+# Liverseg: Federated Learning for Liver and Tumor Segmentation
 
-FedSeg is a federated learning framework built on **Flower (FLWR)** for
+Liverseg is a federated learning framework built on **Flower (FLWR)** for
 distributed medical image segmentation.\
 The project aims to train a collaborative **liver and tumor segmentation
 model** across multiple institutions (clients) **without sharing raw
 patient data**, improving privacy and enabling multi-center learning.
 
-FedSeg uses:
+Liverseg uses:
 
 -   **Flower (FLWR)** for federated orchestration\
 -   **PyTorch / PyTorch Lightning** (optional) for training\
