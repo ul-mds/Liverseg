@@ -48,9 +48,9 @@ FedSeg uses:
 
 FedSeg supports several architectures, including:
 
--   **UNet**\
--   **ResUNet**\
--   **Sepnet**\
+-   **UNet**
+-   **ResUNet**
+-   **Sepnet**
 
 ------------------------------------------------------------------------
 
